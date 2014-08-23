@@ -1,4 +1,5 @@
 // iTunes
+var focusId;
 var iTunesAudio = new Audio();
 var searchWord;
 var searchType;

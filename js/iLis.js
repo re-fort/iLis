@@ -69,3 +69,36 @@ $("#J_menuRanking").click(function() {
 	}
 	getRanking();
 });
+
+$(document).keyup(function(e) {
+	var current = document.activeElement;
+	if (current.id != "J_searchInput" && iTunesAudio.src != ""){
+		if (e.keyCode == 39) {
+			nextSong();
+		}
+		if (e.keyCode == 37) {
+			prevSong();
+		}
+		if (e.keyCode == 13) {
+			if ($("#J_playBtn").hasClass("pause-btn")) {
+				iTunesAudio.pause();
+				$("#J_playBtn").removeClass("pause-btn");
+				$("#J_playBtn").addClass("play-btn");
+				$(".play-btn").text("play");
+				$("#m" + curNo +" span").first().removeClass("nowplaying");
+				$("#m" + curNo +" span").first().addClass("notplaying");
+			}
+			// 一時停止した曲を再生
+			else {
+				if (iTunesAudio.src != ""){
+					iTunesAudio.play();
+					$("#J_playBtn").removeClass("play-btn");
+					$("#J_playBtn").addClass("pause-btn");
+					$(".pause-btn").text("pause");
+					$("#m" + curNo +" span").first().removeClass("notplaying");
+					$("#m" + curNo +" span").first().addClass("nowplaying");
+				}
+			}
+		}
+	}
+});
