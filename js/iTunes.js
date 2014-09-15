@@ -14,6 +14,14 @@ function getInfo (keyWord) {
   $("#J_menuMyfav").removeClass("current");
   $("#J_menuRanking").removeClass("current");
 
+  // リストを初期化
+  $('#J_playTracksList').empty();
+  $("#J_trackCount").text("曲");
+  $(".ui-row-item-column.c2").text("アーティスト名")
+  $(".ui-row-item-column.c3").text("アルバム名")
+
+  $("#J_playerMode").css("opacity", "1");
+
   // ローディングくるくる
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
@@ -76,7 +84,7 @@ function showData(json) {
     maxNo = json.results.length;
     
     // 取得曲数を反映
-    $("#J_trackCount").text("(" + json.results.length + ")");
+    $("#J_trackCount").text("曲(" + json.results.length + ")");
     
     var sArray = shuffleArrayList(json.results.length);
     for (var i = 0, len = json.results.length; i < len; i++) {
@@ -90,7 +98,16 @@ function showData(json) {
       }
 
       // HTML作成
-      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-previewurl="' + result.previewUrl + '" data-image="' + result.artworkUrl100 + '" data-artistname="' + result.artistName + '" data-trackname="' + result.trackName + '" data-artistviewurl="' + result.artistViewUrl + '&amp;at=10ldcR" data-trackviewurl="' + result.trackViewUrl + '&amp;at=10ldcR" data-collectionname="' + result.collectionName + '" data-collectionviewurl="' + result.collectionViewUrl + '&amp;at=10ldcR" data-trackid="' + result.trackId + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item-column c1"><span class="lsf playmedia notplaying" onClick="playSong(' + i + ');">playmedia</span><span class="song" onClick="playSong(' + i + ');">' + result.trackName + '</span></div><div class="ui-row-item-column c2"><a href="' + result.artistViewUrl + '&amp;at=10ldcR" target="_blank">' + result.artistName + '</a></div><div class="ui-row-item-column c3" data-album-id="442861"><a href="' + result.collectionViewUrl + '&amp;at=10ldcR" target="_blank">' + result.collectionName + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf ' + fav + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span></div></div></div>'
+      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-previewurl="' + result.previewUrl + '" data-image="' + result.artworkUrl100 
+              + '" data-artistname="' + result.artistName + '" data-trackname="' + result.trackName + '" data-artistviewurl="' + result.artistViewUrl 
+              + '&amp;at=10ldcR" data-trackviewurl="' + result.trackViewUrl + '&amp;at=10ldcR" data-collectionname="' + result.collectionName 
+              + '" data-collectionviewurl="' + result.collectionViewUrl + '&amp;at=10ldcR" data-trackid="' + result.trackId 
+              + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf playmedia notplaying" onClick="playSong(' + i 
+              + ');">playmedia</span><span class="song" onClick="playSong(' + i + ');">' + result.trackName + '</span></div><div class="ui-row-item c2"><a href="' + result.artistViewUrl 
+              + '&amp;at=10ldcR" target="_blank">' + result.artistName + '</a></div><div class="ui-row-item c3" data-album-id="442861"><a href="' + result.collectionViewUrl 
+              + '&amp;at=10ldcR" target="_blank">' + result.collectionName + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf ' + fav 
+              + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span><a href="https://www.youtube.com/results?search_query=' + result.trackName + ' ' + result.artistName
+              + '" class="social" target="_blank"><span class="J_trackFav lsf youtube">youtube</span></a></div>'
 
       // htmlにアペンド
       $("#J_playTracksList").append(html);
@@ -139,13 +156,21 @@ function favLoad(){
     
     maxNo = localStorage.length;
     // 取得曲数を反映
-    $("#J_trackCount").text("(" + localStorage.length + ")");
+    $("#J_trackCount").text("曲(" + localStorage.length + ")");
 
     var sArray = shuffleArrayList(localStorage.length);
 
     for (var i = 0; i < localStorage.length; i++){
       fav = JSON.parse(localStorage.getItem(localStorage.key(sArray[i])));
-      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-previewurl="' + fav.previewUrl + '" data-image="' + fav.image + '" data-artistname="' + fav.artistName + '" data-trackname="' + fav.trackName + '" data-artistviewurl="' + fav.artistViewUrl + '" data-trackviewurl="' + fav.trackViewUrl + '" data-collectionname="' + fav.collectionName + '" data-collectionviewurl="' + fav.collectionViewUrl + '" data-trackid="' + localStorage.key(sArray[i]) + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item-column c1"><span class="lsf playmedia notplaying" onClick="playSong(' + i + ');">playmedia</span><span class="song" onClick="playSong(' + i + ');">' + fav.trackName + '</span></div><div class="ui-row-item-column c2"><a href="' + fav.artistViewUrl + '" target="_blank">' + fav.artistName + '</a></div><div class="ui-row-item-column c3"><a href="' + fav.collectionViewUrl + '" target="_blank">' + fav.collectionName + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf fav" onClick="favSong(' + i + ', true)">heart</span></div></div></div>'
+      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-previewurl="' + fav.previewUrl + '" data-image="' + fav.image + '" data-artistname="' 
+              + fav.artistName + '" data-trackname="' + fav.trackName + '" data-artistviewurl="' + fav.artistViewUrl + '" data-trackviewurl="' + fav.trackViewUrl 
+              + '" data-collectionname="' + fav.collectionName + '" data-collectionviewurl="' + fav.collectionViewUrl + '" data-trackid="' + localStorage.key(sArray[i]) 
+              + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf playmedia notplaying" onClick="playSong(' 
+              + i + ');">playmedia</span><span class="song" onClick="playSong(' + i + ');">' + fav.trackName + '</span></div><div class="ui-row-item c2"><a href="' 
+              + fav.artistViewUrl + '" target="_blank">' + fav.artistName + '</a></div><div class="ui-row-item c3"><a href="' + fav.collectionViewUrl 
+              + '" target="_blank">' + fav.collectionName + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf fav" onClick="favSong(' + i 
+              + ', true)">heart</span><a href="https://www.youtube.com/results?search_query=' + fav.trackName + ' ' + fav.artistName
+              + '" class="social" target="_blank"><span class="J_trackFav lsf youtube">youtube</span></a></div></div></div>'
       // htmlにアペンド
       $("#J_playTracksList").append(html);
     }
@@ -201,7 +226,7 @@ function showRankingData(json) {
     maxNo = json.feed.entry.length;
     
     // 取得曲数を反映
-    $("#J_trackCount").text("(" + json.feed.entry.length + ")");
+    $("#J_trackCount").text("曲(" + json.feed.entry.length + ")");
     
     // キーからコロンを除去し、再格納
     var jsonStr = JSON.stringify(json);
@@ -209,7 +234,6 @@ function showRankingData(json) {
     json = JSON.parse(jsonStr);
 
     for (var i = 0, len = json.feed.entry.length; i < len; i++) {
-      var result = json.feed.entry[i];
       var fav = "notfav";
       var favTxt = "heartempty";
 
@@ -219,7 +243,16 @@ function showRankingData(json) {
       }
 
       // HTML作成
-      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-previewurl="' + json.feed.entry[i].link[1].attributes.href + '" data-image="' + json.feed.entry[i].image[2].label + '" data-artistname="' + json.feed.entry[i].artist.label + '" data-trackname="' + json.feed.entry[i].name.label + '" data-artistviewurl="' + json.feed.entry[i].artist.attributes.href + '&amp;at=10ldcR" data-trackviewurl="' + json.feed.entry[i].link[0].attributes.href + '&amp;at=10ldcR" data-collectionname="' + json.feed.entry[i].collection.name.label + '" data-collectionviewurl="' + json.feed.entry[i].link[0].attributes.href + '&amp;at=10ldcR" data-trackid="' + json.feed.entry[i].id.attributes.id + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item-column c1"><span class="lsf playmedia notplaying" onClick="playSong(' + i + ');">playmedia</span><span class="song" onClick="playSong(' + i + ');">' + json.feed.entry[i].name.label + '</span></div><div class="ui-row-item-column c2"><a href="' + json.feed.entry[i].artist.attributes.href + '&amp;at=10ldcR" target="_blank">' + json.feed.entry[i].artist.label + '</a></div><div class="ui-row-item-column c3" data-album-id="442861"><a href="' + json.feed.entry[i].link[0].attributes.href + '&amp;at=10ldcR">' + json.feed.entry[i].collection.name.label + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf ' + fav + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span></div></div></div>'
+      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-previewurl="' + json.feed.entry[i].link[1].attributes.href + '" data-image="' 
+            + json.feed.entry[i].image[2].label + '" data-artistname="' + json.feed.entry[i].artist.label + '" data-trackname="' + json.feed.entry[i].name.label 
+            + '" data-artistviewurl="' + json.feed.entry[i].artist.attributes.href + '&amp;at=10ldcR" data-trackviewurl="' + json.feed.entry[i].link[0].attributes.href 
+            + '&amp;at=10ldcR" data-collectionname="' + json.feed.entry[i].collection.name.label + '" data-collectionviewurl="' + json.feed.entry[i].link[0].attributes.href 
+            + '&amp;at=10ldcR" data-trackid="' + json.feed.entry[i].id.attributes.id + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf playmedia notplaying" onClick="playSong(' + i + ');">playmedia</span><span class="song" onClick="playSong(' + i + ');">' 
+            + json.feed.entry[i].name.label + '</span></div><div class="ui-row-item c2"><a href="' + json.feed.entry[i].artist.attributes.href + '&amp;at=10ldcR" target="_blank">' 
+            + json.feed.entry[i].artist.label + '</a></div><div class="ui-row-item c3" data-album-id="442861"><a href="' + json.feed.entry[i].link[0].attributes.href 
+            + '&amp;at=10ldcR">' + json.feed.entry[i].collection.name.label + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf ' + fav 
+            + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span><a href="https://www.youtube.com/results?search_query=' + json.feed.entry[i].name.label + ' ' 
+            + json.feed.entry[i].artist.label + '" class="social" target="_blank"><span class="J_trackFav lsf youtube">youtube</span></a></div></div></div>'
       
       // htmlにアペンド
       $("#J_playTracksList").append(html);
@@ -232,6 +265,65 @@ function showRankingData(json) {
     $("#J_playTracksList").append(html);
     $("#J_trackCount").text("");
   }
+}
+
+// みんなのプレイリスト・リスト表示
+function showOthersData () {
+  
+  // ローディングくるくる
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+
+  $('#J_playTracksList').empty();
+  html = '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/pitti_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/pitti2210" target="_blank"><span>ぴっち</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/jyanome_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/jyanomegasa" target="_blank"><span>じゃのめ</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/re-fort_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/re_fort" target="_blank"><span>れーふぉ</span></a></div></div></div></div>';
+  // htmlにアペンド
+  $("#J_playTracksList").append(html);
+}
+
+// みんなのプレイリスト・曲取得
+function getOthersData (fileNm) {
+  
+  // ローディングくるくる
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+
+  $("#J_trackCount").text("曲")
+  $(".ui-row-item-column.c2").text("アーティスト名")
+  $(".ui-row-item-column.c3").text("アルバム名")
+
+  $('#J_playTracksList').empty();
+
+  $.getJSON(fileNm, function(json){
+    // 取得曲数を反映
+    $("#J_trackCount").text("曲(" + json.playList.length + ")");
+    maxNo = json.playList.length;
+    
+    for (var i = 0, len = json.playList.length; i < len; i++) {
+      var result = json.playList[i];
+      var fav = "notfav";
+      var favTxt = "heartempty";
+
+      if (localStorage.getItem(result.trackId)) {
+        fav = "fav";
+        favTxt = "heart"
+      }
+
+      // HTML作成
+      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-previewurl="' + result.previewUrl + '" data-image="' + result.image 
+              + '" data-artistname="' + result.artistName + '" data-trackname="' + result.trackName + '" data-artistviewurl="' + result.artistViewUrl 
+              + '&amp;at=10ldcR" data-trackviewurl="' + result.trackViewUrl + '&amp;at=10ldcR" data-collectionname="' + result.collectionName 
+              + '" data-collectionviewurl="' + result.collectionViewUrl + '&amp;at=10ldcR" data-trackid="' + result.trackId 
+              + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf playmedia notplaying" onClick="playSong(' + i 
+              + ');">playmedia</span><span class="song" onClick="playSong(' + i + ');">' + result.trackName + '</span></div><div class="ui-row-item c2"><a href="' + result.artistViewUrl 
+              + '&amp;at=10ldcR" target="_blank">' + result.artistName + '</a></div><div class="ui-row-item c3" data-album-id="442861"><a href="' + result.collectionViewUrl 
+              + '&amp;at=10ldcR" target="_blank">' + result.collectionName + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf ' + fav 
+              + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span><a href="https://www.youtube.com/results?search_query=' + result.trackName + ' ' + result.artistName
+              + '" class="social" target="_blank"><span class="J_trackFav lsf youtube">youtube</span></a></div>'
+
+      // htmlにアペンド
+      $("#J_playTracksList").append(html);
+    }
+  });
 }
 
 // 前の曲を再生
@@ -406,6 +498,7 @@ function favSong(songNo, playlistFlg){
     }
     else {
       obj = {
+        trackId:$music.data('trackid'),
         previewUrl:$music.data('previewurl'),
         image:$music.data('image'),
         artistName:$music.data('artistname'),

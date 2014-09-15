@@ -150,6 +150,15 @@ h1 {
   color: #FE7E95;
   cursor:pointer;
 }
+.youtube {
+  color: #CCC;
+  margin-right: 7px;
+  margin-left: 7px;
+}
+.youtube:hover {
+  color: #F94A4A;
+  cursor:pointer;
+}
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video
 {
   margin:0;
@@ -889,6 +898,13 @@ body
   display:block;
   position:absolute;
   top:11px;
+  cursor:pointer;
+}
+.ui-track-control a.social
+{
+  display:inline;
+  position:absolute;
+  top:0px;
   cursor:pointer;
 }
 .ui-track-item:hover,.ui-track-hover
