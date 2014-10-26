@@ -13,6 +13,8 @@ function getInfo (keyWord) {
   $("#J_menuPlaying").addClass("current");
   $("#J_menuMyfav").removeClass("current");
   $("#J_menuRanking").removeClass("current");
+  $("#J_menuRanking").removeClass("current");
+  $("#J_menuOthersPlaying").removeClass("current");
 
   // リストを初期化
   $('#J_playTracksList').empty();
@@ -118,7 +120,6 @@ function showData(json) {
     html = '<div class="ui-row-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item-column"><span>＊ 曲が見つかりませんでした ＊</span></div></div></div></div>';
     // htmlにアペンド
     $("#J_playTracksList").append(html);
-    $("#J_trackCount").text("");
   }
 }
 
@@ -274,9 +275,11 @@ function showOthersData () {
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
   $('#J_playTracksList').empty();
-  html = '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/pitti_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/pitti2210" target="_blank"><span>ぴっち</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/jyanome_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/jyanomegasa" target="_blank"><span>じゃのめ</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/re-fort_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/re_fort" target="_blank"><span>れーふぉ</span></a></div></div></div></div>';
+  html = '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/pitti_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/pitti2210" target="_blank"><span>ぴっち</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/jyanome_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/jyanomegasa" target="_blank"><span>じゃのめ</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/re-fort_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/re_fort" target="_blank"><span>れーふぉ</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/metaparadox_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/MetaParadox" target="_blank"><span>MetaParadox</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/result_2010s_J.json'" + ')">2010年代ベストトラック(邦楽) 1位〜200位</span></div><div class="ui-row-item c2"><a href=# target="_blank"><span>いろいろな方々</span></a></div></div></div></div>';
   // htmlにアペンド
   $("#J_playTracksList").append(html);
 }
@@ -287,9 +290,11 @@ function getOthersData (fileNm) {
   // ローディングくるくる
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
-  $("#J_trackCount").text("曲")
-  $(".ui-row-item-column.c2").text("アーティスト名")
-  $(".ui-row-item-column.c3").text("アルバム名")
+  $(".ui-row-item-column.c1").css("width", "33%");
+  $("#J_trackCount").text("曲");
+  $(".ui-row-item-column.c2").css("width", "33%");
+  $(".ui-row-item-column.c2").text("アーティスト名");
+  $(".ui-row-item-column.c3").text("アルバム名");
 
   $('#J_playTracksList').empty();
 

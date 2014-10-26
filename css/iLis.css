@@ -70,7 +70,6 @@ h1 {
 .navbar-brand {
   font-weight: 100;
   font-size: 25px;
-  letter-spacing: 2px;
   padding-left: 20px;
   color: white;
 }
@@ -422,7 +421,7 @@ body
   width:270px;
   height:100%;
   position:absolute;
-  right:0;
+  right:50px;
   top:10px;
 }
 .player-volume #volume
@@ -678,6 +677,10 @@ body
   font-size:14px;
   letter-spacing:2px;
 }
+.search-help
+{
+  padding-right: 50px;
+}
 .search-wrap .search-input
 {
   top:100px;
@@ -691,7 +694,7 @@ body
   padding:3px;
   outline:0 none;
   color:#fff;
-  font-family:"Hiragino Sans GB","Microsoft Yahei",SimHei,SimSun;
+  font-family:'Mplus';
 }
 .main-wrap
 {
@@ -833,6 +836,15 @@ body
 {
   float:left;
   width:33%;
+  padding-right:.2%;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}
+.ui-row-item .c4
+{
+  float:left;
+  width:50%;
   padding-right:.2%;
   text-overflow:ellipsis;
   white-space:nowrap;

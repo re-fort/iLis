@@ -4,8 +4,13 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="iLisはiTunesの音楽を手軽に視聴できるサイトです!!">
-	<meta name="keywords" content="iTunes,音楽,視聴,無料,サンプル">
+	<meta name="description" content="iLisはiTunes Store‎の音楽を手軽に視聴できるサイトです!!">
+	<meta name="keywords" content="iTunes,iTunes Store,音楽,視聴,無料,サンプル">
+	<meta property="og:title" content="iLis">
+	<meta property="og:type" content="product">
+	<meta property="og:description" content="iLisはiTunes Store‎の音楽を手軽に視聴できるサイトです!!※対象ブラウザ(for PC)：Chrome,Safari">
+	<meta property="og:url" content="http://re-fort.net/iLis.html">
+	<meta property="og:image" content="http://re-fort.net/img/portfolio/iLis.png">
 	<link rel="shortcut icon" href="/iLis.ico">
 
 	<title>iLis</title>
@@ -17,6 +22,7 @@
 	<link href="css/iLis.css" rel="stylesheet" />
 	<link href="css/bootstrap-slider.css" rel="stylesheet" />
 	<link href="css/skins/square/square.css" rel="stylesheet" />
+	<link href="css/introjs.css" rel="stylesheet" />
 
 	<!-- scripts -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -39,36 +45,41 @@
 	<div id="player-main">
 		<!-- Top -->
 		<div id="top">
-			<div class="navbar-header">
-				<div class="logo">
-					<h1 class="Montserrat">
-						<a class="navbar-brand lsf-icon logo" title="music" href="http://re-fort.net/iLis.html">iLis</a>
-					</h1>
-				</div>
-				<div class="search-wrap">
-					<div class="search-content">
-						<form action="" method="post" onSubmit="return false;">
-							<input id="J_searchStatus" type="submit">
-							<div class="search-input">
-								<input id="J_searchInput" autocomplete="off" type="text" name="search" onkeydown="if(event.keyCode == 13){getInfo(this.value);}">
-							</div>
-						</form>
+			<div data-intro="iLisはiTunes Store‎の音楽を手軽に視聴できるサイトです!!" data-step="1">
+				<div class="navbar-header">
+					<div class="logo">
+						<h1 class="Montserrat">
+							<a class="navbar-brand lsf-icon logo" title="music" href="http://re-fort.net/iLis.html">iLis</a>
+						</h1>
+					</div>
+					<div class="search-wrap">
+						<div class="search-content">
+							<form action="" method="post" onSubmit="return false;">
+								<input id="J_searchStatus" type="submit">
+								<div class="search-input">
+									<div data-intro="検索ワードを入力します。Enterキーで検索ができます。" data-step="2">
+										<input id="J_searchInput" autocomplete="off" type="text" name="search" onkeydown="if(event.keyCode == 13){getInfo(this.value);}"></div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="search-attribute Montserrat" data-intro="検索条件を選択します。" data-step="3">
+						<input type="radio" value="0" name="attribute" checked>
+						<label for="all">All</label>
+						<input type="radio" class="iradio_flat" value="1" name="attribute">
+						<label for="artist">Artist</label>
+						<input type="radio" value="2" name="attribute">
+						<label for="album">Album</label>
+						<input type="radio" value="3" name="attribute">
+						<label for="track">Track</label>
 					</div>
 				</div>
-				<div class="search-attribute Montserrat">
-						<input type="radio" value="0" name="attribute" checked>
-							<label for="all">All</label>
-						<input type="radio" class="iradio_flat" value="1" name="attribute">
-							<label for="artist">Artist</label>
-						<input type="radio" value="2" name="attribute">
-							<label for="album">Album</label>
-						<input type="radio" value="3" name="attribute">
-							<label for="track">Track</label>
-				</div>
 			</div>
+
 			<div class="navbar-header navbar-right">
 				<div class="logo">
 					<h1 class="Montserrat">
+						<a class="navbar-brand navbar-brand2 lsf search-help" href="javascript:void(0);">help</a>
 						<a class="navbar-brand navbar-brand2 lsf" href="http://b.hatena.ne.jp/add?mode=confirm&amp;url=http://re-fort.net/iLis.html&amp;title=iLis" target="_blank">hatenabookmark</a>
 						<a class="navbar-brand navbar-brand2 lsf" href="https://twitter.com/share?text=iLis -" target="_blank">twitter</a>
 						<a class="navbar-brand navbar-brand2 lsf" href="http://www.facebook.com/sharer.php?u=http://re-fort.net/iLis.html&amp;t=iLis" target="_blank">facebook</a>
@@ -86,25 +97,25 @@
 				<div class="main-sidebar">
 					<div class="menu-outer">
 						<ul id="J_sidebarMenu">
-							<li id="J_menuPlaying" class="current">
+							<li id="J_menuPlaying" class="current" data-intro="検索した曲を視聴できます。" data-step="4" data-position="right">
 								<a>
 									<span class="lsf-icon" title="music"></span>
 									プレイリスト
 								</a>
 							</li>
-							<li id="J_menuMyfav">
+							<li id="J_menuMyfav" data-intro="お気に入りに入れた曲を視聴できます。" data-step="5" data-position="right">
 								<a>
 									<span class="lsf-icon" title="heart"></span>
 									お気に入り
 								</a>
 							</li>
-							<li id="J_menuRanking">
+							<li id="J_menuRanking" data-intro="iTunesStoreのランキング上位100曲を視聴できます。" data-step="6" data-position="right">
 								<a>
 									<span class="lsf-icon" title="crown"></span>
 									ランキング
 								</a>
 							</li>
-							<li id="J_menuOthersPlaying">
+							<li id="J_menuOthersPlaying" data-intro="プレイリストを視聴できます。" data-step="7" data-position="right">
 								<a>
 									<span class="lsf-icon" title="twinkle"></span>
 									プレイリスト特集
@@ -116,135 +127,138 @@
 						<span style="padding-top:10px;">スポンサードリンク</span>
 						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 						<!-- iLis --> <ins class="adsbygoogle"
-     style="display:inline-block;width:120px;height:230px"
-     data-ad-client="ca-pub-6267609390272538"
-     data-ad-slot="7675119903"></ins>
+	     style="display:inline-block;width:120px;height:230px"
+	     data-ad-client="ca-pub-6267609390272538"
+	     data-ad-slot="7675119903"></ins>
 						<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 						<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-						<!-- iLis+ --> <!--<ins class="adsbygoogle"
-     style="display:inline-block;width:120px;height:230px"
-     data-ad-client="ca-pub-6267609390272538"
-     data-ad-slot="1628586300"></ins>
-						<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>-->
+					<!-- iLis+ -->
+					<!--<ins class="adsbygoogle"
+	     style="display:inline-block;width:120px;height:230px"
+	     data-ad-client="ca-pub-6267609390272538"
+	     data-ad-slot="1628586300"></ins>
+				<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+				-->
+			</div>
+		</div>
+		<!-- /Main-sidebar -->
+		<div id="J_tab" class="main-body">
+
+			<!-- Main-page -->
+			<div id="J_pagePlayList" class="main-page" style="display:block">
+				<div class="ui-playlist-header ui-row-item">
+					<div class="ui-row-item-body">
+						<div class="ui-row-item-column c1">
+							<div id="J_trackCount">曲</div>
+						</div>
+						<div class="ui-row-item-column c2">アーティスト</div>
+						<div class="ui-row-item-column c3">アルバム</div>
 					</div>
 				</div>
-				<!-- /Main-sidebar -->
-				<div id="J_tab" class="main-body">
+				<!-- Ui-playlist-body -->
 
-					<!-- Main-page -->
-					<div id="J_pagePlayList" class="main-page" style="display:block">
-						<div class="ui-playlist-header ui-row-item">
-							<div class="ui-row-item-body">
-								<div class="ui-row-item-column c1">
-									<div id="J_trackCount">曲</div>
-								</div>
-								<div class="ui-row-item-column c2">アーティスト</div>
-								<div class="ui-row-item-column c3">アルバム</div>
-							</div>
-						</div>
-						<!-- Ui-playlist-body -->
-
-						<div class="ui-playlist-body">
-							<div id="J_tracksScrollView" class="ks-scroll-view">
-								<div class="ks-scroll-view-content">
-									<!-- Ui-tracks-wrap-->
-									<div class="ui-tracks-wrap" id="J_playTracksList">
-										<div class="ui-row-item">
-											<div class="ui-track-main">
-												<div class="ui-row-item-body">
-													<div class="ui-row-item-column c1"></div>
-													<div class="ui-row-item-column c2"></div>
-													<div class="ui-row-item-column c3"></div>
-												</div>
-											</div>
+				<div class="ui-playlist-body">
+					<div id="J_tracksScrollView" class="ks-scroll-view">
+						<div class="ks-scroll-view-content">
+							<!-- Ui-tracks-wrap-->
+							<div class="ui-tracks-wrap" id="J_playTracksList">
+								<div class="ui-row-item">
+									<div class="ui-track-main">
+										<div class="ui-row-item-body">
+											<div class="ui-row-item-column c1"></div>
+											<div class="ui-row-item-column c2"></div>
+											<div class="ui-row-item-column c3"></div>
 										</div>
 									</div>
 								</div>
-								<!-- /Ui-tracks-wrap-->
 							</div>
 						</div>
+						<!-- /Ui-tracks-wrap-->
 					</div>
-					<!-- Ui-playlist-body -->
 				</div>
-				<!-- /Main-page -->
 			</div>
-			<div id="J_lrcWrap" class="main-outher">
-				<div class="ui-album-cover">
-					<div id="J_playerCover" class="ui-album-img">
-						<a href="" target="_blank">
-							<img href="" class="img-circle img-120" />
-						</a>
-					</div>
-				</div>
-				<div class="ui-player-lrc" id="J_lyricScrollWrap">
-					<div class="ui-player-lrc-wrap" id="J_playerLrc">
-						<ul>
-							<li class="ui-lrc-line lsf-icon" title="amazon">Amazon</li>
-							<li class="ui-lrc-line">
-								<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=rinomikuron-22&o=9&p=9&l=bn1&mode=music-jp&browse=202765011&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="180" height="150" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
-							</li>
-							<li class="ui-lrc-line">
-								<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=rinomikuron-22&o=9&p=9&l=bn1&mode=music-jp&browse=202765011&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="180" height="150" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
-							</li>
-						</ul>
-					</div>
-				</div>
+			<!-- Ui-playlist-body -->
+		</div>
+		<!-- /Main-page -->
+	</div>
+	<div id="J_lrcWrap" class="main-outher">
+		<div class="ui-album-cover">
+			<div id="J_playerCover" class="ui-album-img">
+				<a href="" target="_blank">
+					<img href="" class="img-circle img-120" />
+				</a>
+			</div>
+		</div>
+		<div class="ui-player-lrc" id="J_lyricScrollWrap">
+			<div class="ui-player-lrc-wrap" id="J_playerLrc">
+				<ul>
+					<li class="ui-lrc-line lsf-icon" title="amazon">Amazon</li>
+					<li class="ui-lrc-line">
+						<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=rinomikuron-22&o=9&p=9&l=bn1&mode=music-jp&browse=202765011&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="180" height="150" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
+					</li>
+					<li class="ui-lrc-line">
+						<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=rinomikuron-22&o=9&p=9&l=bn1&mode=music-jp&browse=202765011&fc1=000000&lt1=_blank&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="180" height="150" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
-	<!-- /Middle -->
+</div>
+</div>
+<!-- /Middle -->
 
-	<!-- Bottom -->
-	<div id="bottom">
-		<div id="J_playerWrap">
-			<div class="player-info">
-				<div class="track-info">
-					<div id="J_trackInfo" class="player-track-info">
-						<a id="J_trackName" href="#" target="_blank"></a>
-						-
-						<a id="J_artistName" href="#" target="_blank"></a>
-					</div>
-					<div class="track-controls">
-						<span id="J_trackFav" class="notfav lsf" onClick="favSong(curNo, false)">heartempty</span>
-					</div>
-				</div>
-				<div class="player-length">
-					<div class="player-position" id="J_positionTime">00:00</div>
-					<div class="player-progress">
-						<div class="progress" id="J_playerProgress">
-							<input id="progressSlider" type="text" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
-						</div>
-					</div>
-					<div class="player-duration" id="J_durationTime">00:00</div>
+<!-- Bottom -->
+<div id="bottom">
+<div id="J_playerWrap">
+	<div class="player-info">
+		<div class="track-info">
+			<div id="J_trackInfo" class="player-track-info">
+				<a id="J_trackName" href="#" target="_blank"></a>
+				-
+				<a id="J_artistName" href="#" target="_blank"></a>
+			</div>
+			<div class="track-controls">
+				<span id="J_trackFav" class="notfav lsf" onClick="favSong(curNo, false)" data-intro="再生中の曲をお気に入りに登録します。" data-step="12" data-position="top">heartempty</span>
+			</div>
+		</div>
+		<div class="player-length">
+			<div class="player-position" id="J_positionTime">00:00</div>
+			<div class="player-progress">
+				<div class="progress" id="J_playerProgress">
+					<input id="progressSlider" type="text" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
 				</div>
 			</div>
-			<div class="player-controls">
-				<span id="J_prevBtn" class="prev-btn lsf" onClick="prevSong();">backback</span>
-				<span id="J_playBtn" class="play-btn lsf">play</span>
-				<span id="J_nextBtn" class="next-btn lsf" onClick="nextSong();">nextnext</span>
-				<div class="player-mode">
-					<span id="J_playerMode" class="mode-order lsf">shuffle</span>
-				</div>
-			</div>
-			<div class="player-volume">
-				<div id="volume">
-					<div id="J_volumeSpeaker" class="volume-on lsf">volumeup</div>
-					<div class="volume-wrap">
-						<input id="volumeSlider" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50" data-slider-tooltip="hide" />
-					</div>
-				</div>
+			<div class="player-duration" id="J_durationTime">00:00</div>
+		</div>
+	</div>
+	<div class="player-controls">
+		<span id="J_prevBtn" class="prev-btn lsf" onClick="prevSong();" data-intro="ひとつ前の曲を再生します。矢印キーの「←」でも操作可能です。" data-step="8" data-position="top">backback</span>
+		<span id="J_playBtn" class="play-btn lsf" data-intro="曲を再生/一時停止します。Enterキーでも操作可能です。" data-step="9" data-position="top">play</span>
+		<span id="J_nextBtn" class="next-btn lsf" onClick="nextSong();" data-intro="次の曲を再生します。矢印キーの「→」でも操作可能です。" data-step="10" data-position="top">nextnext</span>
+		<div class="player-mode">
+			<span id="J_playerMode" class="mode-order lsf" data-intro="プレイリストをシャッフルします。" data-step="11" data-position="top">shuffle</span>
+		</div>
+	</div>
+	<div class="player-volume">
+		<div id="volume">
+			<div id="J_volumeSpeaker" class="volume-on lsf" data-intro="音量を変更します。" data-step="13" data-position="top">volumeup</div>
+			<div class="volume-wrap">
+				<input id="volumeSlider" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50" data-slider-tooltip="hide" />
 			</div>
 		</div>
 	</div>
-	<!-- /Bottom -->
+</div>
+</div>
+<!-- /Bottom -->
 
-	<!-- Bootstrap core JavaScript
+<!-- Bootstrap core JavaScript
     ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/vague.js"></script>
-	<script src="js/icheck.js"></script>
-	<script src="js/bootstrap-slider.js"></script>
-	<script src="js/iLis.js"></script>
-	<script src="js/iTunes.js"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/vague.js"></script>
+<script src="js/icheck.js"></script>
+<script src="js/intro.js"></script>
+<script src="js/bootstrap-slider.js"></script>
+<script src="js/iLis.js"></script>
+<script src="js/iTunes.js"></script>
 </body>
 </html>

@@ -33,7 +33,9 @@ $("#J_menuPlaying").click(function() {
 
 		// リストを初期化
 		$('#J_playTracksList').empty();
+		$(".ui-row-item-column.c1").css("width", "33%");
 		$("#J_trackCount").text("曲");
+		$(".ui-row-item-column.c2").css("width", "33%");
 		$(".ui-row-item-column.c2").text("アーティスト名")
 		$(".ui-row-item-column.c3").text("アルバム名")
 		
@@ -57,6 +59,8 @@ $("#J_menuMyfav").click(function() {
 		$("#J_menuOthersPlaying").removeClass("current");
 		$("#J_menuRanking").removeClass("current");
 
+		$(".ui-row-item-column.c1").css("width", "33%");
+		$(".ui-row-item-column.c2").css("width", "33%");
 		$(".ui-row-item-column.c2").text("アーティスト名")
 		$(".ui-row-item-column.c3").text("アルバム名")
 
@@ -75,7 +79,9 @@ $("#J_menuRanking").click(function() {
 		
 		// リストを初期化
 		$('#J_playTracksList').empty();
+		$(".ui-row-item-column.c1").css("width", "33%");
 		$("#J_trackCount").text("曲");
+		$(".ui-row-item-column.c2").css("width", "33%");
 		$(".ui-row-item-column.c2").text("アーティスト名")
 		$(".ui-row-item-column.c3").text("アルバム名")
 
@@ -97,11 +103,17 @@ $("#J_menuOthersPlaying").click(function() {
 	}
 	// リストを初期化
 	$('#J_playTracksList').empty();
+	$(".ui-row-item-column.c1").css("width", "50%");
 	$("#J_trackCount").text("プレイリスト名")
-	$(".ui-row-item-column.c2").text("プレイリスト作者")
-	$(".ui-row-item-column.c3").text("")
+	$(".ui-row-item-column.c2").css("width", "50%");
+	$(".ui-row-item-column.c2").text("プレイリスト作者");
+	$(".ui-row-item-column.c3").text("");
 
 	showOthersData();
+});
+
+$(".search-help").click(function() {
+	introJs().start();
 });
 
 $(document).keyup(function(e) {
