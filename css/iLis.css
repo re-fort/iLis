@@ -70,6 +70,7 @@ h1 {
 .navbar-brand {
   font-weight: 100;
   font-size: 25px;
+  padding: 20px 15px;
   padding-left: 20px;
   color: white;
 }
@@ -677,9 +678,18 @@ body
   font-size:14px;
   letter-spacing:2px;
 }
+.search-country
+{
+  position:absolute;
+  left:930px;
+  top:14px;
+  color:white;
+  font-size:14px;
+  letter-spacing:2px;
+}
 .search-help
 {
-  padding-right: 50px;
+  padding-right: 40px;
 }
 .search-wrap .search-input
 {

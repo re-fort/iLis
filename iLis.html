@@ -21,6 +21,7 @@
 	<!-- Custom styles -->
 	<link href="css/iLis.css" rel="stylesheet" />
 	<link href="css/bootstrap-slider.css" rel="stylesheet" />
+	<link href="css/bootstrap-select.css" rel="stylesheet" />
 	<link href="css/skins/square/square.css" rel="stylesheet" />
 	<link href="css/introjs.css" rel="stylesheet" />
 
@@ -73,6 +74,14 @@
 						<input type="radio" value="3" name="attribute">
 						<label for="track">Track</label>
 					</div>
+					<div class="search-country Montserrat" data-intro="検索する国を選択します。" data-step="4" data-position="right">
+						<select class="selectpicker" name="country">
+							<optgroup label="Country">
+    							<option>JP</option>
+    							<option>US</option>
+    						</optgroup>
+  						</select>
+  					</div>
 				</div>
 			</div>
 
@@ -97,25 +106,25 @@
 				<div class="main-sidebar">
 					<div class="menu-outer">
 						<ul id="J_sidebarMenu">
-							<li id="J_menuPlaying" class="current" data-intro="検索した曲を視聴できます。" data-step="4" data-position="right">
+							<li id="J_menuPlaying" class="current" data-intro="検索した曲を視聴できます。" data-step="5" data-position="right">
 								<a>
 									<span class="lsf-icon" title="music"></span>
 									プレイリスト
 								</a>
 							</li>
-							<li id="J_menuMyfav" data-intro="お気に入りに入れた曲を視聴できます。" data-step="5" data-position="right">
+							<li id="J_menuMyfav" data-intro="お気に入りに入れた曲を視聴できます。" data-step="6" data-position="right">
 								<a>
 									<span class="lsf-icon" title="heart"></span>
 									お気に入り
 								</a>
 							</li>
-							<li id="J_menuRanking" data-intro="iTunesStoreのランキング上位100曲を視聴できます。" data-step="6" data-position="right">
+							<li id="J_menuRanking" data-intro="iTunesStoreのランキング上位100曲を視聴できます。" data-step="7" data-position="right">
 								<a>
 									<span class="lsf-icon" title="crown"></span>
 									ランキング
 								</a>
 							</li>
-							<li id="J_menuOthersPlaying" data-intro="プレイリストを視聴できます。" data-step="7" data-position="right">
+							<li id="J_menuOthersPlaying" data-intro="プレイリストを視聴できます。" data-step="8" data-position="right">
 								<a>
 									<span class="lsf-icon" title="twinkle"></span>
 									プレイリスト特集
@@ -218,7 +227,7 @@
 				<a id="J_artistName" href="#" target="_blank"></a>
 			</div>
 			<div class="track-controls">
-				<span id="J_trackFav" class="notfav lsf" onClick="favSong(curNo, false)" data-intro="再生中の曲をお気に入りに登録します。" data-step="12" data-position="top">heartempty</span>
+				<span id="J_trackFav" class="notfav lsf" onClick="favSong(curNo, false)" data-intro="再生中の曲をお気に入りに登録します。" data-step="13" data-position="top">heartempty</span>
 			</div>
 		</div>
 		<div class="player-length">
@@ -232,16 +241,16 @@
 		</div>
 	</div>
 	<div class="player-controls">
-		<span id="J_prevBtn" class="prev-btn lsf" onClick="prevSong();" data-intro="ひとつ前の曲を再生します。矢印キーの「←」でも操作可能です。" data-step="8" data-position="top">backback</span>
-		<span id="J_playBtn" class="play-btn lsf" data-intro="曲を再生/一時停止します。Enterキーでも操作可能です。" data-step="9" data-position="top">play</span>
-		<span id="J_nextBtn" class="next-btn lsf" onClick="nextSong();" data-intro="次の曲を再生します。矢印キーの「→」でも操作可能です。" data-step="10" data-position="top">nextnext</span>
+		<span id="J_prevBtn" class="prev-btn lsf" onClick="prevSong();" data-intro="ひとつ前の曲を再生します。矢印キーの「←」でも操作可能です。" data-step="9" data-position="top">backback</span>
+		<span id="J_playBtn" class="play-btn lsf" data-intro="曲を再生/一時停止します。Enterキーでも操作可能です。" data-step="10" data-position="top">play</span>
+		<span id="J_nextBtn" class="next-btn lsf" onClick="nextSong();" data-intro="次の曲を再生します。矢印キーの「→」でも操作可能です。" data-step="11" data-position="top">nextnext</span>
 		<div class="player-mode">
-			<span id="J_playerMode" class="mode-order lsf" data-intro="プレイリストをシャッフルします。" data-step="11" data-position="top">shuffle</span>
+			<span id="J_playerMode" class="mode-order lsf" data-intro="プレイリストをシャッフルします。" data-step="12" data-position="top">shuffle</span>
 		</div>
 	</div>
 	<div class="player-volume">
 		<div id="volume">
-			<div id="J_volumeSpeaker" class="volume-on lsf" data-intro="音量を変更します。" data-step="13" data-position="top">volumeup</div>
+			<div id="J_volumeSpeaker" class="volume-on lsf" data-intro="音量を変更します。" data-step="14" data-position="top">volumeup</div>
 			<div class="volume-wrap">
 				<input id="volumeSlider" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50" data-slider-tooltip="hide" />
 			</div>
@@ -257,7 +266,9 @@
 <script src="js/vague.js"></script>
 <script src="js/icheck.js"></script>
 <script src="js/intro.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-slider.js"></script>
+<script src="js/bootstrap-select.js"></script>
 <script src="js/iLis.js"></script>
 <script src="js/iTunes.js"></script>
 </body>

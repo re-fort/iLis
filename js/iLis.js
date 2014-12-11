@@ -24,6 +24,8 @@ $("input").iCheck({
 	radioClass: "iradio_square"
 });
 
+$(".selectpicker").selectpicker();
+
 $("#J_menuPlaying").click(function() {
 	if (!$("#J_menuPlaying").hasClass("current")) {
 		$("#J_menuPlaying").addClass("current");

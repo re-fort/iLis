@@ -32,7 +32,6 @@ function getInfo (keyWord) {
     lang: 'ja_jp',
     entity: 'musicTrack',
     media: 'music',
-    country: 'JP',
     term: keyWord,
     limit: '200',
   };
@@ -48,6 +47,8 @@ function getInfo (keyWord) {
   else if (searchType == 3){
     params.attribute= 'songTerm';
   }
+  
+  params.country = $("select[name='country']").val();
   
   searchWord = keyWord;
 
