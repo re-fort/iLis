@@ -276,18 +276,21 @@ function showOthersData () {
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
   $('#J_playTracksList').empty();
-  html = '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/pitti_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/pitti2210" target="_blank"><span>ぴっち</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/jyanome_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/jyanomegasa" target="_blank"><span>じゃのめ</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/re-fort_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/re_fort" target="_blank"><span>れーふぉ</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/metaparadox_2010s_J.json'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/MetaParadox" target="_blank"><span>MetaParadox</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'/iLis/result_2010s_J.json'" + ')">2010年代ベストトラック(邦楽) 1位〜200位</span></div><div class="ui-row-item c2"><a href=# target="_blank"><span>いろいろな方々</span></a></div></div></div></div>';
+  html = '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'1'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/pitti2210" target="_blank"><span>ぴっち</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'2'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/jyanomegasa" target="_blank"><span>じゃのめ</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'3'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/re_fort" target="_blank"><span>れーふぉ</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'4'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/MetaParadox" target="_blank"><span>MetaParadox</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'5'" + ')">2010年代ベストトラック(邦楽) 1位〜200位</span></div><div class="ui-row-item c2"><a href=# target="_blank"><span>いろいろな方々</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'6'" + ')">2010年代ベストトラック(洋楽) 1位〜100位</span></div><div class="ui-row-item c2"><a href=# target="_blank"><span>いろいろな方々</span></a></div></div></div></div>';
   // htmlにアペンド
   $("#J_playTracksList").append(html);
 }
 
 // みんなのプレイリスト・曲取得
-function getOthersData (fileNm) {
+function getOthersData (fileNo) {
   
+  var fileNm = getFileName(fileNo);
+
   // ローディングくるくる
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
@@ -330,6 +333,37 @@ function getOthersData (fileNm) {
       $("#J_playTracksList").append(html);
     }
   });
+}
+
+function getFileName (fileNo) {
+
+  var fileNm;
+
+  switch (fileNo){
+  case "1":
+    fileNm = "/iLis/pitti_2010s_J.json";
+    break;
+  case "2":
+    fileNm = "/iLis/jyanome_2010s_J.json";
+    break;
+  case "3":
+    fileNm = "/iLis/re-fort_2010s_J.json";
+    break;
+  case "4":
+    fileNm = "/iLis/metaparadox_2010s_J.json";
+    break;
+  case "5":
+    fileNm = "/iLis/result_2010s_J.json";
+    break;
+  case "6":
+    fileNm = "/iLis/result_2010s_F.json";
+    break;
+  default:
+    fileNm = "/iLis/result_2010s_J.json";
+    break;
+  }
+
+  return fileNm;
 }
 
 // 前の曲を再生
