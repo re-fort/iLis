@@ -26,6 +26,30 @@ $("input").iCheck({
 
 $(".selectpicker").selectpicker();
 
+// URLからクエリパラメーター取得
+var url   = location.href;
+if (url.match(/[\?]/g)) {
+	query    = url.split("?");
+	querys   = query[1].split("&");
+
+	for ( i = 0; i < querys.length; i++ ) {
+		playlistNo = querys[0].split("=");
+	}
+
+	if ($.isNumeric(playlistNo[1])) {
+		if (!$("#J_menuOthersPlaying").hasClass("current")) {
+		$("#J_menuPlaying").removeClass("current");
+		$("#J_menuMyfav").removeClass("current");
+		$("#J_menuRanking").removeClass("current");
+		$("#J_menuOthersPlaying").addClass("current");
+
+		// opacity
+		$("#J_playerMode").css("opacity", "0.4");
+		}
+		getOthersData(playlistNo[1]);
+	}
+}
+
 $("#J_menuPlaying").click(function() {
 	if (!$("#J_menuPlaying").hasClass("current")) {
 		$("#J_menuPlaying").addClass("current");
