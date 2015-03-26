@@ -67,11 +67,11 @@
 					<div class="search-attribute Montserrat" data-intro="検索条件を選択します。" data-step="3">
 						<input type="radio" value="0" name="attribute" checked>
 						<label for="all">All</label>
-						<input type="radio" class="iradio_flat" value="1" name="attribute">
+						<input type="radio" id="attribute-artist" value="1" name="attribute">
 						<label for="artist">Artist</label>
-						<input type="radio" value="2" name="attribute">
+						<input type="radio" id="attribute-album" value="2" name="attribute">
 						<label for="album">Album</label>
-						<input type="radio" value="3" name="attribute">
+						<input type="radio" id="attribute-track" value="3" name="attribute">
 						<label for="track">Track</label>
 					</div>
 					<div class="search-country Montserrat" data-intro="検索する国を選択します。" data-step="4" data-position="right">
@@ -163,6 +163,8 @@
 						<div class="ui-row-item-column c2">アーティスト</div>
 						<div class="ui-row-item-column c3">アルバム</div>
 					</div>
+					<div class="back"></div>
+					<div class="sharedUrl"></div>
 				</div>
 				<!-- Ui-playlist-body -->
 
@@ -259,6 +261,23 @@
 </div>
 </div>
 <!-- /Bottom -->
+
+<!-- Modal-->
+<div class="modal" id="modal-shared-url" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"></button>
+                <h4 class="modal-title" id="modal-label"></h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Modal-->
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

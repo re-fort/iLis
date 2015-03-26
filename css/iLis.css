@@ -45,7 +45,7 @@
 }
 h1 {
   font-family: 'Montserrat', sans-serif;
-	font-size: 40px;
+  font-size: 40px;
 }
 
 /* Nav */
@@ -87,20 +87,21 @@ h1 {
   border-color: transparent;
 }
 #header {
-	height: 100%;
-	width: 100%;
-	position: relative;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 #blurBackground {
   background-image: url('/img/iLis/bg.jpg');
-	-moz-background-size:100% 100%;
-	background-size:100% 100%;
+  -moz-background-size:100% 100%;
+  background-size:100% 100%;
 }
 .img-circle {
   -webkit-border-radius: 20%;
   -moz-border-radius: 20%;
   border-radius: 20%;
   border :none;
+  cursor: pointer;
 }
 .img-100 {
   width: 100px;
@@ -359,7 +360,8 @@ body
 }
 .ks-scroll-view
 {
-  overflow:auto;
+  overflow:scroll;
+  overflow:overlay;
   position:relative;
   cursor:default;
   outline:0;
@@ -835,7 +837,7 @@ body
 .ui-row-item-body
 {
   padding-left:10px;
-  padding-right:110px;
+  padding-right:90px;
   overflow:hidden;
   -moz-user-select:none;
   -webkit-user-select:none;
@@ -859,6 +861,30 @@ body
   text-overflow:ellipsis;
   white-space:nowrap;
   overflow:hidden;
+}
+.ui-row-item .c5
+{
+  float:left;
+  width:25%;
+  padding-right:.2%;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}
+.ui-row-item .c6
+{
+  float:left;
+  width:75%;
+  padding-right:.2%;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}
+.back, .sharedUrl
+{
+  position:absolute;
+  right:32px;
+  top:9px;
 }
 .ui-row-item .c1 img,.ui-row-item .c2 img,.ui-row-item .c3 img
 {
@@ -895,6 +921,13 @@ body
 {
   text-decoration:underline;
 }
+.ui-album-main
+{
+  border-bottom:1px solid #ebebeb;
+  height:130px;
+  line-height:41px;
+  color:#333;
+}
 .ui-track-disabled
 {
   color:#aaa;
@@ -912,7 +945,7 @@ body
   position:absolute;
   top:0;
   right:0;
-  width:110px;
+  width:90px;
   height:40px;
 }
 .ui-track-control a
@@ -1029,4 +1062,15 @@ body
 #J_tracksScrollView
 {
   height:100%;
+}
+.modal-body
+{
+  word-break:break-all;
+}
+/* margin */
+.mgt5 {
+  margin-top:5px;
+}
+.mgt20 {
+  margin-top:20px;
 }

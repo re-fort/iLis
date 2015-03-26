@@ -1,0 +1,48 @@
+{
+    "playList": [
+        {"id":"1","artistName":"Perfume","collectionName":"LEVEL3","image":"http://a3.mzstatic.com/us/r30/Music4/v4/8f/90/a6/8f90a6e1-a315-1697-da94-8c0398739fcc/13UAAIM93845.100x100-75.jpg","searchWord":"716830411","lookUp":"on"}
+        ,{"id":"2","artistName":"サカナクション","collectionName":"sakanaction","image":"http://a1.mzstatic.com/us/r30/Music/v4/f3/8a/73/f38a7355-845c-7a08-e4e1-5b10252fbac9/VICL-63999.100x100-75.jpg","searchWord":"604748196","lookUp":"on"}
+        ,{"id":"3","artistName":"tofubeats","collectionName":"lost decade","image":"http://a5.mzstatic.com/us/r30/Music/v4/70/91/cf/7091cf2c-f0bb-e5fe-7727-6f5d95399628/tofu_lostdecade.100x100-75.jpg"}
+        ,{"id":"4","artistName":"きゃりーぱみゅぱみゅ","collectionName":"なんだこれくしょん","image":"http://a5.mzstatic.com/us/r30/Music/v4/f1/db/dd/f1dbdd26-ace0-1295-aa26-4be5d73a8cd8/825646432158.100x100-75.jpg"}
+        ,{"id":"5","artistName":"スピッツ","collectionName":"小さな生き物","image":"http://a4.mzstatic.com/us/r30/Music6/v4/67/24/6b/67246b42-efaf-0bff-1814-8e5db5e265e4/13UAAIM68378.100x100-75.jpg","searchWord":"684861868","lookUp":"on"}
+        ,{"id":"6","artistName":"downy","collectionName":"第五作品集『無題』","image":"http://a3.mzstatic.com/us/r30/Music6/v4/f5/19/f0/f519f0e2-7ba8-a457-9512-c8d397b08f6a/4538182372913_cov.100x100-75.jpg"}
+        ,{"id":"7","artistName":"the chef cooks me","collectionName":"回転体","image":"http://a4.mzstatic.com/us/r30/Music6/v4/de/dc/f2/dedcf2da-b46f-0517-b0be-3cc4a50127ea/006621_4580380270300.100x100-75.jpg"}
+        ,{"id":"8","artistName":"パスピエ","collectionName":"演出家出演","image":"http://a3.mzstatic.com/us/r30/Music2/v4/19/f6/f9/19f6f995-1fe9-fca5-7611-701b32316b7d/825646441990.100x100-75.jpg","searchWord":"648566097","lookUp":"on"}
+        ,{"id":"9","artistName":"(((さらうんど)))","collectionName":"New Age","image":"http://a3.mzstatic.com/us/r30/Music6/v4/b0/db/69/b0db69a3-c033-e6a2-b8a5-6cdb10194ee6/4538182325193_cov.100x100-75.jpg"}
+        ,{"id":"10","artistName":"RHYMESTER","collectionName":"ダーティーサイエンス","image":"http://a5.mzstatic.com/us/r30/Music/v4/77/9f/59/779f59f0-2b05-2ec6-8759-446c4dc413e2/jacket_KSCL02196B00Z-01_550.100x100-75.jpg"}
+        ,{"id":"11","artistName":"私立恵比寿中学","collectionName":"中人","image":"http://a1.mzstatic.com/us/r30/Music6/v4/d7/94/84/d7948425-0c90-c698-1a17-a9db991f2f6b/jacket_DFXX00465B00Z-01_550.100x100-75.jpg"}
+        ,{"id":"12","artistName":"森は生きている","collectionName":"森は生きている","image":"http://a3.mzstatic.com/us/r30/Music4/v4/a1/ab/42/a1ab428e-7d49-8bf4-369a-99a1fe954958/4538182339633_cov.100x100-75.jpg","searchWord":"681808140","lookUp":"on"}
+        ,{"id":"13","artistName":"きのこ帝国","collectionName":"eureka","image":"http://a1.mzstatic.com/us/r30/Music/v4/bd/b1/65/bdb165ef-7639-ec29-032e-c56718ba715e/UKDZ0139.100x100-75.jpg"}
+        ,{"id":"14","artistName":"大森靖子","collectionName":"絶対少女","image":"http://a4.mzstatic.com/us/r30/Music4/v4/6e/8e/fc/6e8efce3-610a-bc99-0343-dccbcc279294/PINK-004.100x100-75.jpg"}
+        ,{"id":"15","artistName":"bloodthirsty butchers","collectionName":"youth （青春）","image":"http://a4.mzstatic.com/us/r30/Music6/v4/9b/35/0c/9b350c41-23bd-60d9-3d08-1b6e7378f6cb/KICS-1967youth_JK1011.100x100-75.jpg"}
+        ,{"id":"16","artistName":"住所不定無職","collectionName":"GOLD FUTURE BASIC,","image":"http://a1.mzstatic.com/us/r30/Music6/v4/0f/f5/de/0ff5de7e-644b-9732-750b-a0544ce0c762/DCRC0081.100x100-75.jpg"}
+        ,{"id":"17","artistName":"電気グルーヴ","collectionName":"人間と動物","image":"http://a2.mzstatic.com/us/r30/Music2/v4/0e/e5/0b/0ee50b97-ed00-ce8b-785b-8414295aa775/jacket_KSCL02202B00Z-01_550.100x100-75.jpg"}
+        ,{"id":"18","artistName":"ももいろクローバーZ","collectionName":"5TH DIMENSION","image":"http://a5.mzstatic.com/us/r30/Music2/v4/c4/46/06/c446060e-a798-6fc7-fa8d-f374451f578f/KICS-1899.100x100-75.jpg","searchWord":"624384617","lookUp":"on"}
+        ,{"id":"19","artistName":"LUNA SEA","collectionName":"A WILL","image":"http://a2.mzstatic.com/us/r30/Music6/v4/89/12/fa/8912faab-4799-a85f-4855-41e08cecf766/13UAEIM26078.100x100-75.jpg"}
+        ,{"id":"20","artistName":"でんぱ組.inc","collectionName":"WORLD WIDE DEMPA","image":"http://a5.mzstatic.com/us/r30/Music6/v4/bc/ab/e8/bcabe8fb-1f3b-0733-02ce-e069266c7c17/WORLD_WIDE_DEMPA.100x100-75.jpg"}
+        ,{"id":"21","artistName":"花澤香菜","collectionName":"claire","image":"http://a4.mzstatic.com/us/r30/Music/v4/2a/2d/8a/2a2d8ae4-1cfa-fdd7-ed71-9d28cf76e63a/jacket_SVWC07929B00Z-01_550.100x100-75.jpg"}
+        ,{"id":"22","artistName":"andymori","collectionName":"宇宙の果てはこの目の前に","image":"http://a4.mzstatic.com/us/r30/Music2/v4/8d/0a/19/8d0a19d8-9559-191d-cd47-79bf8473eed2/4538182317570_cov.100x100-75.jpg","searchWord":"660147368","lookUp":"on"}
+        ,{"id":"23","artistName":"Negicco","collectionName":"Melody Palette","image":"http://a3.mzstatic.com/us/r30/Music4/v4/3e/d2/71/3ed2712b-bcbd-bfa0-4aca-d4fc724b7ea3/006580_4997184936101.100x100-75.jpg"}
+        ,{"id":"24","artistName":"UNISON SQUARE GARDEN","collectionName":"CIDER ROAD","image":"http://a4.mzstatic.com/us/r30/Music/v4/9f/83/8a/9f838ab6-ecc0-dbc2-ec66-d8bfefa79c88/CIDER_ROAD.100x100-75.jpg"}
+        ,{"id":"25","artistName":"KANA-BOON","collectionName":"DOPPEL","image":"http://a3.mzstatic.com/us/r30/Music/v4/4d/af/d4/4dafd496-b1d3-eb73-defa-8e41d0786920/jacket_KSXX00691B00Z-01_550.100x100-75.jpg"}
+        ,{"id":"26","artistName":"片想い","collectionName":"片想インダハウス","image":"http://a5.mzstatic.com/us/r30/Music6/v4/51/3d/1e/513d1e2d-44db-06c0-e844-bb58dd9c23f4/4538182338063_cov.100x100-75.jpg"}
+        ,{"id":"27","artistName":"禁断の多数決","collectionName":"アラビアの禁断の多数決","image":"http://a5.mzstatic.com/us/r30/Music6/v4/f4/c7/9f/f4c79ff5-b8c3-eacc-6715-1135067bc8a6/4538182370261_cov.100x100-75.jpg"}
+        ,{"id":"28","artistName":"μ's","collectionName":"ラブライブ！ μ's Best Album Best Live! Collection","image":"http://a4.mzstatic.com/us/r30/Music/v4/f6/2a/67/f62a67a6-e349-b495-7b11-df7e38194e22/LACA_9262.100x100-75.jpg"}
+        ,{"id":"29","artistName":"豊崎 愛生","collectionName":"Love Letters","image":"http://a1.mzstatic.com/us/r30/Music4/v4/37/65/38/376538eb-f445-605d-f438-fb51523e4a47/jacket_SMCL00312B00Z-01_550.100x100-75.jpg"}
+        ,{"id":"30","artistName":"GRAPEVINE","collectionName":"愚かな者の語ること","image":"http://a4.mzstatic.com/us/r30/Music2/v4/5d/19/3a/5d193a1f-b696-838a-e383-a4150d120e92/PCCA_03819_itunes.100x100-75.jpg"}
+        ,{"id":"31","artistName":"環ROY","collectionName":"ラッキー","image":"http://a1.mzstatic.com/us/r30/Music2/v4/06/32/94/063294e7-58ff-968a-38c4-fe84e087b504/POP-140_ROY.100x100-75.jpg"}
+        ,{"id":"32","artistName":"相対性理論","collectionName":"TOWN AGE","image":"http://a1.mzstatic.com/us/r30/Features6/v4/01/57/87/015787e5-1d08-06cf-23e8-1b3ccf067970/dj.mfkzfkht.100x100-75.jpg"}
+        ,{"id":"33","artistName":"Czecho No Republic","collectionName":"ネバーランド","image":"http://a3.mzstatic.com/us/r30/Music/v4/74/46/5c/74465c14-1c54-c595-5fe0-9e703010ff98/COKZ_90012.100x100-75.jpg"}
+        ,{"id":"34","artistName":"ドレスコーズ","collectionName":"バンド・デシネ","image":"http://a3.mzstatic.com/us/r30/Features4/v4/39/56/6a/39566ab9-bab7-8b86-985e-f665552fb909/dj.pwyizqsv.100x100-75.jpg"}
+        ,{"id":"35","artistName":"細野晴臣","collectionName":"Heavenly Music","image":"http://a4.mzstatic.com/us/r30/Music/v4/c3/6c/2f/c36c2fa7-7ea0-d8fd-f8da-357238e16eb6/VICL-64031.100x100-75.jpg"}
+        ,{"id":"36","artistName":"Galileo Galilei","collectionName":"ALARMS","image":"http://a3.mzstatic.com/us/r30/Music/v4/38/bf/39/38bf3965-a98c-63b3-ec44-e9a4ed727397/jacket_SEXX00624B00Z-01_550.100x100-75.jpg"}
+        ,{"id":"37","artistName":"のあのわ","collectionName":"Cry Like a Monster","image":"http://a5.mzstatic.com/us/r30/Music/v4/00/dd/82/00dd826a-5cdd-8f47-756a-90cdb4915348/4538182272541.100x100-75.jpg"}
+        ,{"id":"38","artistName":"曽我部恵一","collectionName":"超越的漫画","image":"http://a5.mzstatic.com/us/r30/Music/v4/fe/e6/f2/fee6f203-2ab7-786e-1f9e-2894b7517ac3/ROSE160rgb.100x100-75.jpg"}
+        ,{"id":"39","artistName":"きのこ帝国","collectionName":"ロンググッドバイ","image":"http://a5.mzstatic.com/us/r30/Music6/v4/64/f4/dd/64f4dd52-fb0c-cef9-0c58-5eff8f1e3066/UKDZ0150.100x100-75.jpg"}
+        ,{"id":"40","artistName":"THE NOVEMBERS","collectionName":"zeitgeist","image":"http://a1.mzstatic.com/us/r30/Music/v4/2b/93/82/2b938296-a858-aeb0-1c05-98704c5d4b5e/859750311740_cover.100x100-75.jpg"}
+        ,{"id":"41","artistName":"青葉市子","collectionName":"0","image":"http://a5.mzstatic.com/us/r30/Music4/v4/01/dd/0d/01dd0dad-c546-4018-6c85-84178ed3a233/VICL-64215.100x100-75.jpg","searchWord":"720743229","lookUp":"on"}
+        ,{"id":"42","artistName":"クリープハイプ","collectionName":"吹き零れる程のI、哀、愛","image":"http://a2.mzstatic.com/us/r30/Music4/v4/b0/29/50/b02950e9-f24b-6f9e-3bc0-187033071629/VICL-64040.100x100-75.jpg"}
+        ,{"id":"43","artistName":"Melt-Banana","collectionName":"Fetch","image":"http://a4.mzstatic.com/us/r30/Music/v4/ad/71/39/ad7139a7-b33f-2edb-ac9f-c637450d01a6/655035200927.100x100-75.jpg"}
+        ,{"id":"44","artistName":"一十三十一","collectionName":"Surfbank Social Club","image":"http://a5.mzstatic.com/us/r30/Music/v4/3e/ad/2d/3ead2deb-4a04-1196-cee1-fb5d3f3ef79d/HBRJ-1009.100x100-75.jpg"}
+    ]
+}

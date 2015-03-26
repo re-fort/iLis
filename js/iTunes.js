@@ -18,9 +18,14 @@ function getInfo (keyWord) {
 
   // リストを初期化
   $('#J_playTracksList').empty();
+  $(".ui-row-item-column.c1").css("width", "33%");
   $("#J_trackCount").text("曲");
+  $(".ui-row-item-column.c2").css("width", "33%");
   $(".ui-row-item-column.c2").text("アーティスト名")
-  $(".ui-row-item-column.c3").text("アルバム名")
+  $(".ui-row-item-column.c3").css("width", "33%");
+  $(".ui-row-item-column.c3").text("アルバム名");
+  $(".back").html("");
+  
 
   $("#J_playerMode").css("opacity", "1");
 
@@ -52,9 +57,93 @@ function getInfo (keyWord) {
   
   searchWord = keyWord;
 
+  $(".sharedUrl").html("<button class='btn btn-default' style='margin-left: 120px; margin-bottom: 12px; padding: 0px 12px;' data-toggle='modal' data-target='#modal-shared-url'>URL取得</button>");
+  $(".modal-title").text("「" + keyWord + "」の検索結果URL");
+  $(".modal-body").text("http://re-fort.net/iLis.html?s=" + encodeURI(keyWord) + "&a=" + searchType + "&c=" + params.country);
+
   // APIに投げる
   $.ajax({
     url: 'https://itunes.apple.com/search',
+    method: 'GET',
+    data: params,
+    dataType: 'jsonp',
+    
+    //成功
+    success: function(json) {
+      showData(json);
+    },
+
+    //失敗
+    error: function() {
+      $(function(){
+        $('#J_playTracksList').empty();
+        html = '<div class="ui-row-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item-column"><span>＊ エラーが発生しました ＊</span></div></div></div></div>';
+        // htmlにアペンド
+        $("#J_playTracksList").append(html);
+      });
+    },
+  });
+};
+
+// 渡された情報をもとに検索、データ取得
+function getInfoPlayList (keyWord, country, lookUp, id) {
+
+  $("#J_menuPlaying").addClass("current");
+  $("#J_menuMyfav").removeClass("current");
+  $("#J_menuRanking").removeClass("current");
+  $("#J_menuRanking").removeClass("current");
+  $("#J_menuOthersPlaying").removeClass("current");
+
+  // リストを初期化
+  $('#J_playTracksList').empty();
+  $(".ui-row-item-column.c1").css("width", "33%");
+  $("#J_trackCount").text("曲");
+  $(".ui-row-item-column.c2").css("width", "33%");
+  $(".ui-row-item-column.c2").text("アーティスト名")
+  $(".ui-row-item-column.c3").css("width", "33%");
+  $(".ui-row-item-column.c3").text("アルバム名");
+  $(".back").html("<span class='btn btn-default' style='margin-left: 120px; margin-bottom: 12px; padding: 0px 12px;' onClick='getOthersAlbum(\"" + playlistNo[1] + "\"," + id + ")'>&lt;&lt;戻る</span>");
+  $(".sharedUrl").html("");
+
+  $("#J_playerMode").css("opacity", "1");
+
+  // ローディングくるくる
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+
+  // 基本情報
+  var searchUrl;
+  var params;
+
+  if (lookUp) {
+    searchUrl = 'https://itunes.apple.com/lookup';
+  }
+  else {
+    searchUrl = 'https://itunes.apple.com/search';
+  }
+
+  if (lookUp) {
+    params = {
+      lang: 'ja_jp',
+      entity: 'song',
+      id: unescape(keyWord),
+      limit: '200',
+    };
+  }
+  else {
+    params = {
+      lang: 'ja_jp',
+      entity: 'musicTrack',
+      media: 'music',
+      term: unescape(keyWord),
+      limit: '200',
+    };
+  }
+  
+  params.country = country;
+  
+  // APIに投げる
+  $.ajax({
+    url: searchUrl,
     method: 'GET',
     data: params,
     dataType: 'jsonp',
@@ -90,30 +179,37 @@ function showData(json) {
     $("#J_trackCount").text("曲(" + json.results.length + ")");
     
     var sArray = shuffleArrayList(json.results.length);
+    var k = -1;
     for (var i = 0, len = json.results.length; i < len; i++) {
       var result = json.results[sArray[i]];
       var fav = "notfav";
       var favTxt = "heartempty";
 
-      if (localStorage.getItem(result.trackId)) {
-        fav = "fav";
-        favTxt = "heart"
+      if (result.wrapperType == "collection") {
+        $("#J_trackCount").text("曲(" + (json.results.length-1) + ")");
+        maxNo = maxNo - 1;
       }
+      else {
+        if (localStorage.getItem(result.trackId)) {
+          fav = "fav";
+          favTxt = "heart"
+        }
+        k = k + 1;
 
-      // HTML作成
-      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-previewurl="' + result.previewUrl + '" data-image="' + result.artworkUrl100 
-              + '" data-artistname="' + result.artistName + '" data-trackname="' + result.trackName + '" data-artistviewurl="' + result.artistViewUrl 
+        // HTML作成
+        html = '<div id ="m' + k + '" class="ui-row-item ui-track-item" data-previewurl="' + result.previewUrl + '" data-image="' + result.artworkUrl100 + '" data-artistname="' + result.artistName + '" data-trackname="' + result.trackName + '" data-artistviewurl="' + result.artistViewUrl 
               + '&amp;at=10ldcR" data-trackviewurl="' + result.trackViewUrl + '&amp;at=10ldcR" data-collectionname="' + result.collectionName 
               + '" data-collectionviewurl="' + result.collectionViewUrl + '&amp;at=10ldcR" data-trackid="' + result.trackId 
-              + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf playmedia notplaying" onClick="playSong(' + i 
-              + ');">playmedia</span><span class="song" onClick="playSong(' + i + ');">' + result.trackName + '</span></div><div class="ui-row-item c2"><a href="' + result.artistViewUrl 
+              + '"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c1"><span class="lsf playmedia notplaying" onClick="playSong(' + k 
+              + ');">playmedia</span><span class="song" onClick="playSong(' + k + ');">' + result.trackName + '</span></div><div class="ui-row-item c2"><a href="' + result.artistViewUrl 
               + '&amp;at=10ldcR" target="_blank">' + result.artistName + '</a></div><div class="ui-row-item c3" data-album-id="442861"><a href="' + result.collectionViewUrl 
               + '&amp;at=10ldcR" target="_blank">' + result.collectionName + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf ' + fav 
-              + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span><a href="https://www.youtube.com/results?search_query=' + result.trackName + ' ' + result.artistName
+              + '" onClick="favSong(' + k + ', true)">' + favTxt + '</span><a href="https://www.youtube.com/results?search_query=' + result.trackName + ' ' + result.artistName
               + '" class="social" target="_blank"><span class="J_trackFav lsf youtube">youtube</span></a></div>'
 
-      // htmlにアペンド
-      $("#J_playTracksList").append(html);
+        // htmlにアペンド
+        $("#J_playTracksList").append(html);
+      }
     }
   }
   // データが取得できなかった
@@ -276,12 +372,16 @@ function showOthersData () {
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
   $('#J_playTracksList').empty();
-  html = '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'1'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/pitti2210" target="_blank"><span>ぴっち</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'2'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/jyanomegasa" target="_blank"><span>じゃのめ</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'3'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/re_fort" target="_blank"><span>れーふぉ</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'4'" + ')">2010年代ベストトラック(邦楽)</span></div><div class="ui-row-item c2"><a href="https://twitter.com/MetaParadox" target="_blank"><span>MetaParadox</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'5'" + ')">2010年代ベストトラック(邦楽) 1位〜200位</span></div><div class="ui-row-item c2"><a href=# target="_blank"><span>いろいろな方々</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><span class="song" onClick="getOthersData(' + "'6'" + ')">2010年代ベストトラック(洋楽) 1位〜100位</span></div><div class="ui-row-item c2"><a href=# target="_blank"><span>いろいろな方々</span></a></div></div></div></div>';
+  html = '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=1"><span class="song">001.2010年代ベストトラック(邦楽)</span></a></div><div class="ui-row-item c4"><a href="https://twitter.com/pitti2210" target="_blank"><span>ぴっち</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=2"><span class="song">002.2010年代ベストトラック(邦楽)</span></a></div><div class="ui-row-item c4"><a href="https://twitter.com/jyanomegasa" target="_blank"><span>じゃのめ</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=3"><span class="song">003.2010年代ベストトラック(邦楽)</span></a></div><div class="ui-row-item c4"><a href="https://twitter.com/re_fort" target="_blank"><span>れーふぉ</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=4"><span class="song">004.2010年代ベストトラック(邦楽)</span></a></div><div class="ui-row-item c4"><a href="https://twitter.com/MetaParadox" target="_blank"><span>MetaParadox</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=5"><span class="song">005.2010年代ベストトラック(邦楽) 1位〜200位</span></a></div><div class="ui-row-item c4"><a href="http://ongakudaisukiclub.hateblo.jp/entry/2014/10/24/210012" target="_blank"><span>いろいろな方々</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=6"><span class="song">006.2010年代ベストトラック(洋楽) 1位〜100位</span></a></div><div class="ui-row-item c4"><a href="http://ongakudaisukiclub.hateblo.jp/entry/2014/10/30/205810" target="_blank"><span>いろいろな方々</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=7"><span class="song">007.2013年ベストアルバム(邦楽) 1位〜50位</span></a></div><div class="ui-row-item c4"><a href="http://pittiblog.ldblog.jp/archives/35297409.html" target="_blank"><span>いろいろな方々</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=8"><span class="song">008.Best Albums of 2014(邦楽) 1位〜50位</span></a></div><div class="ui-row-item c4"><a href="http://beehy.pe/best-of-2014/japan-2/" target="_blank"><span>Toyokazu Mori and Satoru Matsuura</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=9"><span class="song">009.2014年ベストアルバム(邦楽) 1位〜150位</span></a></div><div class="ui-row-item c4"><a href="http://ongakudaisukiclub.hateblo.jp/entry/2015/01/16/132622" target="_blank"><span>いろいろな方々</span></a></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=10"><span class="song">010.春歌特集</span></a></div><div class="ui-row-item c4"><span>いろいろな方々</span></div></div></div></div>';
   // htmlにアペンド
   $("#J_playTracksList").append(html);
 }
@@ -299,6 +399,8 @@ function getOthersData (fileNo) {
   $(".ui-row-item-column.c2").css("width", "33%");
   $(".ui-row-item-column.c2").text("アーティスト名");
   $(".ui-row-item-column.c3").text("アルバム名");
+  $(".back").html("");
+  $(".sharedUrl").html("");
 
   $('#J_playTracksList').empty();
 
@@ -335,6 +437,75 @@ function getOthersData (fileNo) {
   });
 }
 
+// みんなのプレイリスト・アルバム取得
+function getOthersAlbum (fileNo, scroll) {
+  
+  var fileNm = getFileName(fileNo);
+
+  // ローディングくるくる
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+
+  $(".ui-row-item-column.c1").css("width", "25%");
+  $("#J_trackCount").text("アルバムジャケット");
+  $(".ui-row-item-column.c2").css("width", "75%");
+  $(".ui-row-item-column.c2").text("アーティスト名、アルバム名");
+  $(".ui-row-item-column.c3").text("");
+  $(".back").html("");
+  $(".sharedUrl").html("");
+
+  $('#J_playTracksList').empty();
+
+  // opacity
+  $("#J_playerMode").css("opacity", "0.4");
+
+  $.getJSON(fileNm, function(json){
+    // 取得アルバム数を反映
+    maxNo = json.playList.length;
+    
+    for (var i = 0, len = json.playList.length; i < len; i++) {
+      var result = json.playList[i];
+      var id = result.id;
+      var searchWord;
+      var country;
+      var lookUp;
+
+      // 「アルバム名＋アーティスト名」で検索しても引っかからなかったりするので
+      if (result.searchWord) {
+        searchWord = escape(result.searchWord);
+      }
+      else {
+        searchWord = escape(result.collectionName + " "  + result.artistName);
+      }
+
+      if (result.country) {
+        country = result.country;
+      }
+      else {
+        country = "JP";
+      }
+
+      if (result.lookUp) {
+        lookUp = true;
+      }
+      else {
+        lookUp = false;
+      }
+
+      // HTML作成
+      html = '<div id ="m' + i + '" class="ui-row-item ui-track-item" data-artistname="' + result.artistName + '" data-collectionname="' + result.collectionName + '" data-image="' + result.image 
+              + '"><div class="ui-album-main"><div class="ui-row-item-body"><div class="ui-row-item c5 mgt5"><img class="img-circle img-120" src="' + result.image + '" onClick="getInfoPlayList(\'' + searchWord
+              + '\',\'' + country + '\',' + lookUp + ',' + id + ');"/></div><div class="ui-row-item c6 mgt20"><p class="lsf-icon" title="you">' + result.artistName + '</p><p class="lsf-icon" title="album" onClick="getInfoPlayList(\'' + searchWord
+              + '\',\'' + country + '\',' + lookUp + ',' + id + ');"><span class="song">' + result.collectionName + '</span></p></div></div>'
+
+      // htmlにアペンド
+      $("#J_playTracksList").append(html);
+
+      // スクロール
+      $('#J_tracksScrollView').scrollTop((scroll - 1) * 130);
+    }
+  });
+}
+
 function getFileName (fileNo) {
 
   var fileNm;
@@ -358,12 +529,46 @@ function getFileName (fileNo) {
   case "6":
     fileNm = "/iLis/result_2010s_F.json";
     break;
+  case "7":
+    fileNm = "/iLis/result_2013album_J.json";
+    break;
+  case "8":
+    fileNm = "/iLis/beehype2014_J.json";
+    break;
+  case "9":
+    fileNm = "/iLis/result_2014album_J.json";
+    break;
+  case "10":
+    fileNm = "/iLis/spring_2015.json";
+    break;
   default:
     fileNm = "/iLis/result_2010s_J.json";
     break;
   }
 
   return fileNm;
+}
+
+function getAlbumFlg (fileNo) {
+
+  var albumFlg;
+
+  switch (fileNo){
+  case "7":
+    albumFlg = true;
+    break;
+  case "8":
+    albumFlg = true;
+    break;
+  case "9":
+    albumFlg = true;
+    break;
+  default:
+    albumFlg = false;
+    break;
+  }
+
+  return albumFlg;
 }
 
 // 前の曲を再生
@@ -544,9 +749,9 @@ function favSong(songNo, playlistFlg){
         artistName:$music.data('artistname'),
         artistViewUrl:$music.data('artistviewurl'),
         trackName:$music.data('trackname'),
-        trackviewurl:$music.data('trackviewurl'),
+        trackViewUrl:$music.data('trackviewurl'),
         collectionName:$music.data('collectionname'),
-        collectionviewurl:$music.data('collectionviewurl')
+        collectionViewUrl:$music.data('collectionviewurl')
       };
       // 保存
       localStorage.setItem($music.data('trackid'),JSON.stringify(obj));
@@ -589,9 +794,9 @@ function favSong(songNo, playlistFlg){
           artistName:$("#J_artistName").text(),
           artistViewUrl:$("#J_artistName").attr('href'),
           trackName:$("#J_trackName").text(),
-          trackviewurl:$("#J_trackName").attr('href'),
+          trackViewUrl:$("#J_trackName").attr('href'),
           collectionName:$("#J_trackInfo").attr('data-collectionname'),
-          collectionviewurl:$("#J_trackInfo").attr('data-collectionviewurl')
+          collectionViewUrl:$("#J_trackInfo").attr('data-collectionviewurl')
         };
         // 保存
         localStorage.setItem($("#J_trackInfo").attr('data-trackid'),JSON.stringify(obj));
