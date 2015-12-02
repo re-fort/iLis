@@ -349,8 +349,8 @@ function showRankingData(json) {
             + json.feed.entry[i].name.label + '</span></div><div class="ui-row-item c2"><a href="' + json.feed.entry[i].artist.attributes.href + '&amp;at=10ldcR" target="_blank">' 
             + json.feed.entry[i].artist.label + '</a></div><div class="ui-row-item c3" data-album-id="442861"><a href="' + json.feed.entry[i].link[0].attributes.href 
             + '&amp;at=10ldcR">' + json.feed.entry[i].collection.name.label + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf ' + fav 
-            + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span><a href="https://www.youtube.com/results?search_query=' + json.feed.entry[i].name.label + ' ' 
-            + json.feed.entry[i].artist.label + '" class="social" target="_blank"><span class="J_trackFav lsf youtube">youtube</span></a></div></div></div>'
+            + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span><a href="https://www.youtube.com/results?search_query=' + json.feed.entry[i].name.label.replace(/\"/g,"") + ' ' 
+            + json.feed.entry[i].artist.label.replace(/\"/g,"") + '" class="social" target="_blank"><span class="J_trackFav lsf youtube">youtube</span></a></div></div></div>'
       
       // htmlにアペンド
       $("#J_playTracksList").append(html);
@@ -381,7 +381,8 @@ function showOthersData () {
           + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=7"><span class="song">007.2013年ベストアルバム(邦楽) 1位〜50位</span></a></div><div class="ui-row-item c4"><a href="http://pittiblog.ldblog.jp/archives/35297409.html" target="_blank"><span>いろいろな方々</span></a></div></div></div></div>'
           + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=8"><span class="song">008.Best Albums of 2014(邦楽) 1位〜50位</span></a></div><div class="ui-row-item c4"><a href="http://beehy.pe/best-of-2014/japan-2/" target="_blank"><span>Toyokazu Mori and Satoru Matsuura</span></a></div></div></div></div>'
           + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=9"><span class="song">009.2014年ベストアルバム(邦楽) 1位〜150位</span></a></div><div class="ui-row-item c4"><a href="http://ongakudaisukiclub.hateblo.jp/entry/2015/01/16/132622" target="_blank"><span>いろいろな方々</span></a></div></div></div></div>'
-          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=10"><span class="song">010.春歌特集</span></a></div><div class="ui-row-item c4"><span>いろいろな方々</span></div></div></div></div>';
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=10"><span class="song">010.春歌特集</span></a></div><div class="ui-row-item c4"><span>いろいろな方々</span></div></div></div></div>'
+          + '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis.html?p=11"><span class="song">011.私の好きな音楽。</span></a></div><div class="ui-row-item c4"><a href="http://ongakudaisukiclub.hateblo.jp/entry/2015/12/02/190000" target="_blank"><span>いろいろな方々</span></a></div></div></div></div>';
   // htmlにアペンド
   $("#J_playTracksList").append(html);
 }
@@ -541,6 +542,9 @@ function getFileName (fileNo) {
   case "10":
     fileNm = "/iLis/spring_2015.json";
     break;
+  case "11":
+    fileNm = "/iLis/my_favorite_music_by_umemoto.json";
+    break;
   default:
     fileNm = "/iLis/result_2010s_J.json";
     break;
@@ -561,6 +565,9 @@ function getAlbumFlg (fileNo) {
     albumFlg = true;
     break;
   case "9":
+    albumFlg = true;
+    break;
+  case "11":
     albumFlg = true;
     break;
   default:
