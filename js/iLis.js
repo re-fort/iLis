@@ -1,8 +1,9 @@
-// Chrome,Safari以外はごめんなさい
+// Chrome,Safari,FireFox以外はごめんなさい
 $(function(){
 	if ((window.navigator.userAgent.toLowerCase().indexOf('chrome')  == -1) &&
-	   (window.navigator.userAgent.toLowerCase().indexOf('safari') == -1)){
-		alert("このページはGoogle Chrome, Safariのみ対応しています:(");
+	   (window.navigator.userAgent.toLowerCase().indexOf('safari') == -1) &&
+	   (window.navigator.userAgent.toLowerCase().indexOf('firefox') == -1)){
+		alert("このページはGoogle Chrome, Safari, FireFoxのみ対応しています:(");
 	}
 });
 
@@ -50,19 +51,23 @@ if (url.match(/[\?]/g)) {
 				// opacity
 				$("#J_playerMode").css("opacity", "0.4");
 			}
-		
-			if (getAlbumFlg(playlistNo[1])) {
-				getOthersAlbum(playlistNo[1]);
+
+			fileInfo = getFileInfo(playlistNo[1]);
+			fileNm = fileInfo[0];
+			albumFlg = fileInfo[1];
+
+			if (albumFlg) {
+				getOthersAlbum(fileNm);
 			}
 			else {
-				getOthersData(playlistNo[1]);
+				getOthersData(fileNm);
 			}
 		}
 	}
 	if (querys[0].slice(0,1) == "s" && querys.length == 3) {
 		queryKeyWord = querys[0].split("=");
 		$("#J_searchInput").val(decodeURI(queryKeyWord[1]));
-		
+
 		queryAttribute = querys[1].split("=");
 		if (queryAttribute[1] == "1") {
 			$('#attribute-artist').iCheck('check');
@@ -73,12 +78,12 @@ if (url.match(/[\?]/g)) {
 		if (queryAttribute[1] == "3") {
 			$('#attribute-track').iCheck('check');
 		}
-		
+
 		queryCountry = querys[2].split("=");
 		if (queryCountry[1] == "US") {
 			$('.selectpicker').selectpicker('val', queryCountry[1]);
 		}
-		
+
 		getInfo(decodeURI(queryKeyWord[1]));
 	}
 }
@@ -98,7 +103,7 @@ $("#J_menuPlaying").click(function() {
 		$(".ui-row-item-column.c2").text("アーティスト名")
 		$(".ui-row-item-column.c3").text("アルバム名")
 		$(".back").html("");
-		
+
 		if (searchWord) {
 			getInfo(searchWord);
 		}
@@ -138,7 +143,7 @@ $("#J_menuRanking").click(function() {
 		$("#J_menuMyfav").removeClass("current");
 		$("#J_menuOthersPlaying").removeClass("current");
 		$("#J_menuRanking").addClass("current");
-		
+
 		// リストを初期化
 		$('#J_playTracksList').empty();
 		$(".ui-row-item-column.c1").css("width", "33%");

@@ -1,0 +1,13 @@
+{
+    "1":["/iLis/pitti_2010s_J.json",false],
+    "2":["/iLis/jyanome_2010s_J.json",false],
+    "3":["/iLis/re-fort_2010s_J.json",false],
+    "4":["/iLis/metaparadox_2010s_J.json",false],
+    "5":["/iLis/result_2010s_J.json",false],
+    "6":["/iLis/result_2010s_F.json",false],
+    "7":["/iLis/result_2013album_J.json",true],
+    "8":["/iLis/beehype2014_J.json",true],
+    "9":["/iLis/result_2014album_J.json",true],
+    "10":["/iLis/spring_2015.json",false],
+    "11":["/iLis/my_favorite_music_by_umemoto.json",true]
+}

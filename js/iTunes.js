@@ -6,6 +6,7 @@ var searchType;
 var curNo;
 var maxNo;
 var html;
+var defName = "/iLis/def_name.json"
 
 // 渡された情報をもとに検索、データ取得
 function getInfo (keyWord) {
@@ -25,7 +26,6 @@ function getInfo (keyWord) {
   $(".ui-row-item-column.c3").css("width", "33%");
   $(".ui-row-item-column.c3").text("アルバム名");
   $(".back").html("");
-  
 
   $("#J_playerMode").css("opacity", "1");
 
@@ -40,9 +40,9 @@ function getInfo (keyWord) {
     term: keyWord,
     limit: '200',
   };
-  
+
   searchType = $('[name=attribute]:checked').val();
-  
+
   if (searchType == 1){
     params.attribute= 'artistTerm';
   }
@@ -52,9 +52,9 @@ function getInfo (keyWord) {
   else if (searchType == 3){
     params.attribute= 'songTerm';
   }
-  
+
   params.country = $("select[name='country']").val();
-  
+
   searchWord = keyWord;
 
   $(".sharedUrl").html("<button class='btn btn-default' style='margin-left: 120px; margin-bottom: 12px; padding: 0px 12px;' data-toggle='modal' data-target='#modal-shared-url'>URL取得</button>");
@@ -67,7 +67,7 @@ function getInfo (keyWord) {
     method: 'GET',
     data: params,
     dataType: 'jsonp',
-    
+
     //成功
     success: function(json) {
       showData(json);
@@ -102,7 +102,7 @@ function getInfoPlayList (keyWord, country, lookUp, id) {
   $(".ui-row-item-column.c2").text("アーティスト名")
   $(".ui-row-item-column.c3").css("width", "33%");
   $(".ui-row-item-column.c3").text("アルバム名");
-  $(".back").html("<span class='btn btn-default' style='margin-left: 120px; margin-bottom: 12px; padding: 0px 12px;' onClick='getOthersAlbum(\"" + playlistNo[1] + "\"," + id + ")'>&lt;&lt;戻る</span>");
+  $(".back").html("<span class='btn btn-default' style='margin-left: 120px; margin-bottom: 12px; padding: 0px 12px;' onClick='getOthersAlbum(getFileInfo(" + playlistNo[1] + ")[0]," + id + ")'>&lt;&lt;戻る</span>");
   $(".sharedUrl").html("");
 
   $("#J_playerMode").css("opacity", "1");
@@ -138,16 +138,16 @@ function getInfoPlayList (keyWord, country, lookUp, id) {
       limit: '200',
     };
   }
-  
+
   params.country = country;
-  
+
   // APIに投げる
   $.ajax({
     url: searchUrl,
     method: 'GET',
     data: params,
     dataType: 'jsonp',
-    
+
     //成功
     success: function(json) {
       showData(json);
@@ -169,15 +169,15 @@ function getInfoPlayList (keyWord, country, lookUp, id) {
 function showData(json) {
   // リストを初期化
   $('#J_playTracksList').empty();
-  
+
   // データが取得できた
   if (json.results.length != 0) {
     curNo = -1;
     maxNo = json.results.length;
-    
+
     // 取得曲数を反映
     $("#J_trackCount").text("曲(" + json.results.length + ")");
-    
+
     var sArray = shuffleArrayList(json.results.length);
     var k = -1;
     for (var i = 0, len = json.results.length; i < len; i++) {
@@ -251,7 +251,7 @@ function favLoad(){
   if (localStorage.length != 0) {
     // リストを初期化
     $('#J_playTracksList').empty();
-    
+
     maxNo = localStorage.length;
     // 取得曲数を反映
     $("#J_trackCount").text("曲(" + localStorage.length + ")");
@@ -295,7 +295,7 @@ function getRanking () {
     url: 'https://itunes.apple.com/jp/rss/topsongs/limit=100/json',
     method: 'GET',
     dataType: 'jsonp',
-    
+
     //成功
     success: function(json) {
       showRankingData(json, false);
@@ -317,15 +317,15 @@ function getRanking () {
 function showRankingData(json) {
   // リストを初期化
   $('#J_playTracksList').empty();
-  
+
   // データが取得できた
   if (json.feed.entry.length != 0) {
     curNo = -1;
     maxNo = json.feed.entry.length;
-    
+
     // 取得曲数を反映
     $("#J_trackCount").text("曲(" + json.feed.entry.length + ")");
-    
+
     // キーからコロンを除去し、再格納
     var jsonStr = JSON.stringify(json);
     jsonStr = jsonStr.replace(/im:/g, "");
@@ -351,7 +351,7 @@ function showRankingData(json) {
             + '&amp;at=10ldcR">' + json.feed.entry[i].collection.name.label + '</a></div></div><div class="ui-track-control"><span class="J_trackFav lsf ' + fav 
             + '" onClick="favSong(' + i + ', true)">' + favTxt + '</span><a href="https://www.youtube.com/results?search_query=' + json.feed.entry[i].name.label.replace(/\"/g,"") + ' ' 
             + json.feed.entry[i].artist.label.replace(/\"/g,"") + '" class="social" target="_blank"><span class="J_trackFav lsf youtube">youtube</span></a></div></div></div>'
-      
+
       // htmlにアペンド
       $("#J_playTracksList").append(html);
     }
@@ -367,7 +367,6 @@ function showRankingData(json) {
 
 // みんなのプレイリスト・リスト表示
 function showOthersData () {
-  
   // ローディングくるくる
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
@@ -388,10 +387,7 @@ function showOthersData () {
 }
 
 // みんなのプレイリスト・曲取得
-function getOthersData (fileNo) {
-  
-  var fileNm = getFileName(fileNo);
-
+function getOthersData (fileNm) {
   // ローディングくるくる
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
@@ -409,7 +405,7 @@ function getOthersData (fileNo) {
     // 取得曲数を反映
     $("#J_trackCount").text("曲(" + json.playList.length + ")");
     maxNo = json.playList.length;
-    
+
     for (var i = 0, len = json.playList.length; i < len; i++) {
       var result = json.playList[i];
       var fav = "notfav";
@@ -439,10 +435,7 @@ function getOthersData (fileNo) {
 }
 
 // みんなのプレイリスト・アルバム取得
-function getOthersAlbum (fileNo, scroll) {
-  
-  var fileNm = getFileName(fileNo);
-
+function getOthersAlbum (fileNm, scroll) {
   // ローディングくるくる
   $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
 
@@ -462,7 +455,7 @@ function getOthersAlbum (fileNo, scroll) {
   $.getJSON(fileNm, function(json){
     // 取得アルバム数を反映
     maxNo = json.playList.length;
-    
+
     for (var i = 0, len = json.playList.length; i < len; i++) {
       var result = json.playList[i];
       var id = result.id;
@@ -507,75 +500,14 @@ function getOthersAlbum (fileNo, scroll) {
   });
 }
 
-function getFileName (fileNo) {
-
-  var fileNm;
-
-  switch (fileNo){
-  case "1":
-    fileNm = "/iLis/pitti_2010s_J.json";
-    break;
-  case "2":
-    fileNm = "/iLis/jyanome_2010s_J.json";
-    break;
-  case "3":
-    fileNm = "/iLis/re-fort_2010s_J.json";
-    break;
-  case "4":
-    fileNm = "/iLis/metaparadox_2010s_J.json";
-    break;
-  case "5":
-    fileNm = "/iLis/result_2010s_J.json";
-    break;
-  case "6":
-    fileNm = "/iLis/result_2010s_F.json";
-    break;
-  case "7":
-    fileNm = "/iLis/result_2013album_J.json";
-    break;
-  case "8":
-    fileNm = "/iLis/beehype2014_J.json";
-    break;
-  case "9":
-    fileNm = "/iLis/result_2014album_J.json";
-    break;
-  case "10":
-    fileNm = "/iLis/spring_2015.json";
-    break;
-  case "11":
-    fileNm = "/iLis/my_favorite_music_by_umemoto.json";
-    break;
-  default:
-    fileNm = "/iLis/result_2010s_J.json";
-    break;
-  }
-
-  return fileNm;
-}
-
-function getAlbumFlg (fileNo) {
-
-  var albumFlg;
-
-  switch (fileNo){
-  case "7":
-    albumFlg = true;
-    break;
-  case "8":
-    albumFlg = true;
-    break;
-  case "9":
-    albumFlg = true;
-    break;
-  case "11":
-    albumFlg = true;
-    break;
-  default:
-    albumFlg = false;
-    break;
-  }
-
-  return albumFlg;
+function getFileInfo (fileNo) {
+  var fileInfo = $.ajax({
+        type: 'GET',
+        url: defName,
+        dataType: 'json',
+        async: false
+    }).responseJSON[fileNo];
+    return fileInfo;
 }
 
 // 前の曲を再生
@@ -626,14 +558,14 @@ function stopSong() {
 function playSong(songNo){
   $(function(){
     var $music = $("#m" + songNo +"");
-    
+
     // 背景を変える
     $("#blurBackground").css("background-image", "url(" + $music.data('image') + ")");
-    
+
     // 画像を変える
     $("img", "#J_playerCover").attr("src", $music.data('image'));
     $("a", "#J_playerCover").attr("href", $music.data('collectionviewurl'));
-    
+
     // アーティスト名、曲名をセット
     $("#J_artistName").text($music.data('artistname'));
     $("#J_artistName").attr("href", $music.data('artistviewurl'));
@@ -646,7 +578,7 @@ function playSong(songNo){
     $("#J_trackInfo").attr("data-image", $music.data('image'));
     $("#J_trackInfo").attr("data-collectionname", $music.data('collectionname'));
     $("#J_trackInfo").attr("data-collectionviewurl", $music.data('collectionviewurl'));
-    
+
     if (localStorage.getItem($music.data('trackid'))) {
       $("#J_trackFav").removeClass("notfav");
       $("#J_trackFav").addClass("fav");
@@ -663,13 +595,13 @@ function playSong(songNo){
       $("#m" + curNo +" span").first().addClass("notplaying");
       $("#m" + curNo +"").removeClass("ui-track-current");
     }
-    
+
     $("#m" + songNo +" span").first().removeClass("notplaying");
     $("#m" + songNo +" span").first().addClass("nowplaying");
     $("#m" + songNo +"").addClass("ui-track-current");
-    
+
     curNo = songNo;
-    
+
     iTunesAudio.src = $music.data("previewurl");
     $(iTunesAudio).on("canplay", function(){ iTunesAudio.play();});
 
