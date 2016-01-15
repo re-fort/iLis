@@ -2,22 +2,22 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 @font-face {
     font-family: 'LigatureSymbols';
-    src: url('/fonts/LigatureSymbols-2.11.eot');
-    src: url('/fonts/LigatureSymbols-2.11.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/LigatureSymbols-2.11.woff') format('woff'),
-         url('/fonts/LigatureSymbols-2.11.ttf') format('truetype'),
-         url('/fonts/LigatureSymbols-2.11.svg#LigatureSymbols') format('svg');
-    src: url('/fonts/LigatureSymbols-2.11.ttf') format('truetype');
+    src: url('../fonts/LigatureSymbols-2.11.eot');
+    src: url('../fonts/LigatureSymbols-2.11.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/LigatureSymbols-2.11.woff') format('woff'),
+         url('../fonts/LigatureSymbols-2.11.ttf') format('truetype'),
+         url('../fonts/LigatureSymbols-2.11.svg#LigatureSymbols') format('svg');
+    src: url('../fonts/LigatureSymbols-2.11.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {  
     font-family: 'Mplus';  
-    src: url('/fonts/mplus-1p-regular.eot');
-    src: url('/fonts/mplus-1p-regular.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/mplus-1p-regular.woff') format('woff'),
-         url('/fonts/mplus-1p-regular.ttf') format('truetype');
-    src: url('/fonts/mplus-1p-regular.ttf') format('truetype');
+    src: url('../fonts/mplus-1p-regular.eot');
+    src: url('../fonts/mplus-1p-regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/mplus-1p-regular.woff') format('woff'),
+         url('../fonts/mplus-1p-regular.ttf') format('truetype');
+    src: url('../fonts/mplus-1p-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal; 
 } 
@@ -92,7 +92,7 @@ h1 {
   position: relative;
 }
 #blurBackground {
-  background-image: url('/img/iLis/bg.jpg');
+  background-image: url('../img/iLis/bg.jpg');
   -moz-background-size:100% 100%;
   background-size:100% 100%;
 }
@@ -129,7 +129,7 @@ h1 {
   height: 24px;
   width: 24px;
   font-size: 0;
-  background-image: url('/img/iLis/nowplaying.gif');
+  background-image: url('../img/iLis/nowplaying.gif');
   display: inline-block;
   cursor:pointer;
 }

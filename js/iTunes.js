@@ -6,7 +6,7 @@ var searchType;
 var curNo;
 var maxNo;
 var html;
-var defName = "/iLis/def_name.json"
+var defName = "./iLis/def_name.json"
 
 // 渡された情報をもとに検索、データ取得
 function getInfo (keyWord) {
@@ -30,7 +30,7 @@ function getInfo (keyWord) {
   $("#J_playerMode").css("opacity", "1");
 
   // ローディングくるくる
-  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='./img/iLis/nowloading.gif' /></div>");
 
   // 基本情報
   var params = {
@@ -108,7 +108,7 @@ function getInfoPlayList (keyWord, country, lookUp, id) {
   $("#J_playerMode").css("opacity", "1");
 
   // ローディングくるくる
-  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='./img/iLis/nowloading.gif' /></div>");
 
   // 基本情報
   var searchUrl;
@@ -246,7 +246,7 @@ function favLoad(){
   curNo = -1;
 
   // ローディングくるくる
-  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='./img/iLis/nowloading.gif' /></div>");
 
   if (localStorage.length != 0) {
     // リストを初期化
@@ -288,7 +288,7 @@ function favLoad(){
 function getRanking () {
 
   // ローディングくるくる
-  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='./img/iLis/nowloading.gif' /></div>");
 
   // APIに投げる
   $.ajax({
@@ -368,7 +368,7 @@ function showRankingData(json) {
 // みんなのプレイリスト・リスト表示
 function showOthersData () {
   // ローディングくるくる
-  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='./img/iLis/nowloading.gif' /></div>");
 
   $('#J_playTracksList').empty();
   html = '<div class="ui-row-item ui-track-item"><div class="ui-track-main"><div class="ui-row-item-body"><div class="ui-row-item c4"><span class="lsf">memo</span><a href="http://re-fort.net/iLis/index.html?p=1"><span class="song">001.2010年代ベストトラック(邦楽)</span></a></div><div class="ui-row-item c4"><a href="https://twitter.com/pitti2210" target="_blank"><span>ぴっち</span></a></div></div></div></div>'
@@ -390,7 +390,7 @@ function showOthersData () {
 // みんなのプレイリスト・曲取得
 function getOthersData (fileNm) {
   // ローディングくるくる
-  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='./img/iLis/nowloading.gif' /></div>");
 
   $(".ui-row-item-column.c1").css("width", "33%");
   $("#J_trackCount").text("曲");
@@ -438,7 +438,7 @@ function getOthersData (fileNm) {
 // みんなのプレイリスト・アルバム取得
 function getOthersAlbum (fileNm, scroll) {
   // ローディングくるくる
-  $("#J_playTracksList").html("<div style='text-align:center;'><img src='/img/iLis/nowloading.gif' /></div>");
+  $("#J_playTracksList").html("<div style='text-align:center;'><img src='./img/iLis/nowloading.gif' /></div>");
 
   $(".ui-row-item-column.c1").css("width", "25%");
   $("#J_trackCount").text("アルバムジャケット");
