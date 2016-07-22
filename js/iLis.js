@@ -64,7 +64,7 @@ if (url.match(/[\?]/g)) {
 			}
 		}
 	}
-	if (querys[0].slice(0,1) == "s" && querys.length == 3) {
+	if (querys[0].slice(0,1) == "s" && querys.length >= 3) {
 		queryKeyWord = querys[0].split("=");
 		$("#J_searchInput").val(decodeURI(queryKeyWord[1]));
 
