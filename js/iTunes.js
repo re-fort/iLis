@@ -6,7 +6,9 @@ var searchType;
 var curNo;
 var maxNo;
 var html;
-var defName = "./iLis/def_name.json"
+var defName = "./iLis/def_name.json";
+var md = new MobileDetect(window.navigator.userAgent);
+var isMobile = md.mobile();
 
 // 渡された情報をもとに検索、データ取得
 function getInfo (keyWord) {
@@ -604,7 +606,12 @@ function playSong(songNo){
     curNo = songNo;
 
     iTunesAudio.src = $music.data("previewurl");
-    $(iTunesAudio).on("canplay", function(){ iTunesAudio.play();});
+    if (isMobile) {
+      // canplaythrough/canplayイベントが発火しないため
+      iTunesAudio.play();
+    } else {
+      $(iTunesAudio).on("canplaythrough", function(){ iTunesAudio.play(); });
+    }
 
     // 総時間を表示
     $(iTunesAudio).on("loadedmetadata", function() {
